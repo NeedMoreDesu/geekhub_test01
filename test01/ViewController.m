@@ -59,23 +59,54 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     NSError *error = nil;
-    _doc = [[GDataXMLDocument alloc]
-            initWithData:_responseData
-            options:0
-            error:&error];
-    if (error) NSLog(@"xml-obtaining error: %@", error);
-    _items = [_doc nodesForXPath:@"//channel/item" error: &error];
-    if (error) NSLog(@"parse error: %@", error);
+    GDataXMLDocument *doc = [[GDataXMLDocument alloc]
+                             initWithData:_responseData
+                             options:0
+                             error:&error];
+    if (error)
+    {
+        [[[UIAlertView alloc]
+          initWithTitle:@"XML-obtaining error"
+          message:[NSString stringWithFormat:@"%@", error]
+          delegate:nil
+          cancelButtonTitle:@"OK"
+          otherButtonTitles: nil]
+         show];
+        return;
+    }
+ 
+    NSArray *items = [doc nodesForXPath:@"//channel/item" error: &error];
+    if (error)
+    {
+        [[[UIAlertView alloc]
+          initWithTitle: @"Parse error"
+          message:[NSString stringWithFormat:@"%@", error]
+          delegate:nil
+          cancelButtonTitle:@"OK"
+          otherButtonTitles: nil]
+         show];
+        return;
+    }
+    // must not rewrite until we know everything is ok
+    _doc = doc;
+    _items = items;
+    
     
     [[self tableView] reloadData];
-
+    
     // The request is complete and data has been received
     // You can parse the stuff in your instance variable now
     
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    NSLog(@"connection error%@", error);
+    [[[UIAlertView alloc]
+      initWithTitle: @"Connection error"
+      message:[NSString stringWithFormat:@"%@", error]
+      delegate:nil
+      cancelButtonTitle:@"OK"
+      otherButtonTitles: nil]
+     show];
     // The request has failed for some reason!
     // Check the error var
 }
@@ -97,13 +128,13 @@
                 initWithStyle:UITableViewCellStyleDefault
                 reuseIdentifier:CellIdentifier];
     }
-
+    
     NSInteger row = [indexPath row];
     GDataXMLElement * item = [_items objectAtIndex:row];
     
     NSString *imageUrl = [[[[item elementsForName:@"itunes:image"] objectAtIndex:0]
-                          attributeForName:@"href"] stringValue];
-
+                           attributeForName:@"href"] stringValue];
+    
     NSString *text = [[[item elementsForName:@"title"] objectAtIndex:0] stringValue];
     UIImage *image = [UIImage imageWithData:
                       [NSData dataWithContentsOfURL:   // sync, so may cause slowdown
