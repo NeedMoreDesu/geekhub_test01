@@ -101,9 +101,19 @@
     NSInteger row = [indexPath row];
     GDataXMLElement * item = [_items objectAtIndex:row];
     
+    NSString *imageUrl = [[[[item elementsForName:@"itunes:image"] objectAtIndex:0]
+                          attributeForName:@"href"] stringValue];
+
+    NSString *text = [[[item elementsForName:@"title"] objectAtIndex:0] stringValue];
+    UIImage *image = [UIImage imageWithData:
+                      [NSData dataWithContentsOfURL:   // sync, so may cause slowdown
+                       [NSURL URLWithString:imageUrl]]];
+    
     [[cell textLabel]
-     setText:
-     [[[item elementsForName:@"title"] objectAtIndex:0] stringValue]];
+     setText:text];
+    
+    [[cell imageView]
+     setImage:image];
     
     return cell;
 }
