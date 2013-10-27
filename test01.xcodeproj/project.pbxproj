@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D77B3262181D77EF00C4720B /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D77B3261181D77EF00C4720B /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D7872ABF181563F500998125 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7872ABE181563F400998125 /* Foundation.framework */; };
 		D7872AC1181563F500998125 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7872AC0181563F500998125 /* CoreGraphics.framework */; };
 		D7872AC3181563F500998125 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7872AC2181563F500998125 /* UIKit.framework */; };
@@ -35,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D77B3260181D77EF00C4720B /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
+		D77B3261181D77EF00C4720B /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
 		D7872ABB181563F400998125 /* test01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = test01.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7872ABE181563F400998125 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D7872AC0181563F500998125 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -81,6 +84,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D77B325F181D77EF00C4720B /* xml */ = {
+			isa = PBXGroup;
+			children = (
+				D77B3260181D77EF00C4720B /* GDataXMLNode.h */,
+				D77B3261181D77EF00C4720B /* GDataXMLNode.m */,
+			);
+			path = xml;
+			sourceTree = "<group>";
+		};
 		D7872AB2181563F400998125 = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +126,7 @@
 		D7872AC4181563F500998125 /* test01 */ = {
 			isa = PBXGroup;
 			children = (
+				D77B325F181D77EF00C4720B /* xml */,
 				D7872ACD181563F500998125 /* AppDelegate.h */,
 				D7872ACE181563F500998125 /* AppDelegate.m */,
 				D7872AD0181563F500998125 /* Main_iPhone.storyboard */,
@@ -254,6 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7872AD8181563F500998125 /* ViewController.m in Sources */,
+				D77B3262181D77EF00C4720B /* GDataXMLNode.m in Sources */,
 				D7872ACF181563F500998125 /* AppDelegate.m in Sources */,
 				D7872ACB181563F500998125 /* main.m in Sources */,
 			);
@@ -394,7 +408,13 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "test01/test01-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/include/libxml2,
+				);
 				INFOPLIST_FILE = "test01/test01-Info.plist";
+				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -407,7 +427,13 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "test01/test01-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/include/libxml2,
+				);
 				INFOPLIST_FILE = "test01/test01-Info.plist";
+				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -474,6 +500,7 @@
 				D7872AF2181563F500998125 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D7872AF3181563F500998125 /* Build configuration list for PBXNativeTarget "test01Tests" */ = {
 			isa = XCConfigurationList;
@@ -482,6 +509,7 @@
 				D7872AF5181563F500998125 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
