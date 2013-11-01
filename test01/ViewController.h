@@ -6,19 +6,17 @@
 //  Copyright (c) 2013 dev. All rights reserved.
 //
 
-#import "GDataXMLNode.h"
 #import <UIKit/UIKit.h>
+#import "Podcast.h"
 
 @interface ViewController : UIViewController
 <UITableViewDataSource, UITableViewDelegate,
-UITextFieldDelegate,
-NSURLConnectionDataDelegate>
+UITextFieldDelegate>
 {
-    NSMutableData *_responseData;
-    GDataXMLDocument *_doc;
-    NSArray *_items;
+    Podcast *_podcast;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UITextField *textField;
 
 @end

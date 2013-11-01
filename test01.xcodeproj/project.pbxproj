@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D77AEE87182417DC00F21F54 /* Podcast.m in Sources */ = {isa = PBXBuildFile; fileRef = D77AEE86182417DC00F21F54 /* Podcast.m */; };
+		D77AEE9818241D5900F21F54 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D77AEE9718241D5900F21F54 /* ImageIO.framework */; };
+		D77AEE9D18241DEA00F21F54 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D77AEE9B18241DEA00F21F54 /* Reachability.m */; };
+		D77AEE9F18241E1A00F21F54 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D77AEE9E18241E1A00F21F54 /* SystemConfiguration.framework */; };
 		D77B3262181D77EF00C4720B /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D77B3261181D77EF00C4720B /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D7872ABF181563F500998125 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7872ABE181563F400998125 /* Foundation.framework */; };
 		D7872AC1181563F500998125 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7872AC0181563F500998125 /* CoreGraphics.framework */; };
@@ -36,8 +40,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D77B3260181D77EF00C4720B /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
-		D77B3261181D77EF00C4720B /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
+		D77AEE85182417DC00F21F54 /* Podcast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Podcast.h; sourceTree = "<group>"; };
+		D77AEE86182417DC00F21F54 /* Podcast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Podcast.m; sourceTree = "<group>"; };
+		D77AEE9718241D5900F21F54 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		D77AEE9B18241DEA00F21F54 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		D77AEE9C18241DEA00F21F54 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		D77AEE9E18241E1A00F21F54 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		D77AEEA0182445AD00F21F54 /* SDImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImageCache.h; sourceTree = "<group>"; };
+		D77AEEA1182445AD00F21F54 /* SDWebImageCompat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageCompat.h; sourceTree = "<group>"; };
+		D77AEEA2182445AD00F21F54 /* SDWebImageDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageDecoder.h; sourceTree = "<group>"; };
+		D77AEEA3182445AD00F21F54 /* SDWebImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageDownloader.h; sourceTree = "<group>"; };
+		D77AEEA4182445AD00F21F54 /* SDWebImageDownloaderOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageDownloaderOperation.h; sourceTree = "<group>"; };
+		D77AEEA5182445AD00F21F54 /* SDWebImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageManager.h; sourceTree = "<group>"; };
+		D77AEEA6182445AD00F21F54 /* SDWebImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageOperation.h; sourceTree = "<group>"; };
+		D77AEEA7182445AD00F21F54 /* SDWebImagePrefetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImagePrefetcher.h; sourceTree = "<group>"; };
+		D77AEEA8182445AD00F21F54 /* UIButton+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+WebCache.h"; sourceTree = "<group>"; };
+		D77AEEA9182445AD00F21F54 /* UIImageView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+WebCache.h"; sourceTree = "<group>"; };
+		D77B3260181D77EF00C4720B /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GDataXMLNode.h; path = xml/GDataXMLNode.h; sourceTree = "<group>"; };
+		D77B3261181D77EF00C4720B /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GDataXMLNode.m; path = xml/GDataXMLNode.m; sourceTree = "<group>"; };
 		D7872ABB181563F400998125 /* test01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = test01.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7872ABE181563F400998125 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D7872AC0181563F500998125 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -65,6 +85,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D77AEE9F18241E1A00F21F54 /* SystemConfiguration.framework in Frameworks */,
+				D77AEE9818241D5900F21F54 /* ImageIO.framework in Frameworks */,
 				D7872AC1181563F500998125 /* CoreGraphics.framework in Frameworks */,
 				D7872AC3181563F500998125 /* UIKit.framework in Frameworks */,
 				D7872ABF181563F500998125 /* Foundation.framework in Frameworks */,
@@ -84,13 +106,58 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D77B325F181D77EF00C4720B /* xml */ = {
+		D77AEE811824178100F21F54 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				D77AEE85182417DC00F21F54 /* Podcast.h */,
+				D77AEE86182417DC00F21F54 /* Podcast.m */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		D77AEE9518241CD800F21F54 /* SDWebImage */ = {
+			isa = PBXGroup;
+			children = (
+				D77AEEA0182445AD00F21F54 /* SDImageCache.h */,
+				D77AEEA1182445AD00F21F54 /* SDWebImageCompat.h */,
+				D77AEEA2182445AD00F21F54 /* SDWebImageDecoder.h */,
+				D77AEEA3182445AD00F21F54 /* SDWebImageDownloader.h */,
+				D77AEEA4182445AD00F21F54 /* SDWebImageDownloaderOperation.h */,
+				D77AEEA5182445AD00F21F54 /* SDWebImageManager.h */,
+				D77AEEA6182445AD00F21F54 /* SDWebImageOperation.h */,
+				D77AEEA7182445AD00F21F54 /* SDWebImagePrefetcher.h */,
+				D77AEEA8182445AD00F21F54 /* UIButton+WebCache.h */,
+				D77AEEA9182445AD00F21F54 /* UIImageView+WebCache.h */,
+			);
+			name = SDWebImage;
+			sourceTree = "<group>";
+		};
+		D77AEE9618241D0500F21F54 /* Foreign */ = {
+			isa = PBXGroup;
+			children = (
+				D77AEE9A18241DC900F21F54 /* GDataXMLNode */,
+				D77AEE9918241DB300F21F54 /* Reachability */,
+				D77AEE9518241CD800F21F54 /* SDWebImage */,
+			);
+			name = Foreign;
+			sourceTree = "<group>";
+		};
+		D77AEE9918241DB300F21F54 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				D77AEE9B18241DEA00F21F54 /* Reachability.m */,
+				D77AEE9C18241DEA00F21F54 /* Reachability.h */,
+			);
+			name = Reachability;
+			sourceTree = "<group>";
+		};
+		D77AEE9A18241DC900F21F54 /* GDataXMLNode */ = {
 			isa = PBXGroup;
 			children = (
 				D77B3260181D77EF00C4720B /* GDataXMLNode.h */,
 				D77B3261181D77EF00C4720B /* GDataXMLNode.m */,
 			);
-			path = xml;
+			name = GDataXMLNode;
 			sourceTree = "<group>";
 		};
 		D7872AB2181563F400998125 = {
@@ -115,6 +182,8 @@
 		D7872ABD181563F400998125 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D77AEE9E18241E1A00F21F54 /* SystemConfiguration.framework */,
+				D77AEE9718241D5900F21F54 /* ImageIO.framework */,
 				D7872ABE181563F400998125 /* Foundation.framework */,
 				D7872AC0181563F500998125 /* CoreGraphics.framework */,
 				D7872AC2181563F500998125 /* UIKit.framework */,
@@ -126,7 +195,8 @@
 		D7872AC4181563F500998125 /* test01 */ = {
 			isa = PBXGroup;
 			children = (
-				D77B325F181D77EF00C4720B /* xml */,
+				D77AEE9618241D0500F21F54 /* Foreign */,
+				D77AEE811824178100F21F54 /* model */,
 				D7872ACD181563F500998125 /* AppDelegate.h */,
 				D7872ACE181563F500998125 /* AppDelegate.m */,
 				D7872AD0181563F500998125 /* Main_iPhone.storyboard */,
@@ -266,9 +336,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D77AEE87182417DC00F21F54 /* Podcast.m in Sources */,
 				D7872AD8181563F500998125 /* ViewController.m in Sources */,
 				D77B3262181D77EF00C4720B /* GDataXMLNode.m in Sources */,
 				D7872ACF181563F500998125 /* AppDelegate.m in Sources */,
+				D77AEE9D18241DEA00F21F54 /* Reachability.m in Sources */,
 				D7872ACB181563F500998125 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -414,7 +486,15 @@
 					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = "test01/test01-Info.plist";
-				OTHER_LDFLAGS = "-lxml2";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/dev/Downloads/SDWebImage.framework/Versions/A,
+					/Users/dev/Documents/end06/test01/test01,
+				);
+				OTHER_LDFLAGS = (
+					"-lxml2",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -433,7 +513,15 @@
 					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = "test01/test01-Info.plist";
-				OTHER_LDFLAGS = "-lxml2";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/dev/Downloads/SDWebImage.framework/Versions/A,
+					/Users/dev/Documents/end06/test01/test01,
+				);
+				OTHER_LDFLAGS = (
+					"-lxml2",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

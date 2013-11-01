@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 dev. All rights reserved.
 //
 
+#import "Reachability.h"
 #import "ViewController.h"
 
 @interface ViewController ()
@@ -17,7 +18,38 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //    [[self textField] setText:@"http://obrazovanie.rpod.ru/rss.xml"];
+    _podcast = [[Podcast alloc] init];
+    Reachability* reach = [Reachability reachabilityForInternetConnection];
+    [reach startNotifier];
+    reach.unreachableBlock = ^(Reachability*reach)
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[[UIAlertView alloc]
+              initWithTitle:@"No connection"
+              message:@""
+              delegate:nil
+              cancelButtonTitle:@"Ok"
+              otherButtonTitles:nil]
+             show];
+        });
+    };
+    reach.reachableBlock = ^(Reachability*reach)
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[[UIAlertView alloc]
+              initWithTitle:@"Internet connection established"
+              message:@""
+              delegate:nil
+              cancelButtonTitle:@"Ok"
+              otherButtonTitles:nil]
+             show];
+        });
+    };
+
+    NetworkStatus remoteHostStatus = [reach currentReachabilityStatus];
+    
+    if(remoteHostStatus == NotReachable)
+        [reach unreachableBlock](reach);
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -30,91 +62,44 @@
 /// text field
 - (BOOL)textFieldShouldReturn:(UITextField *)textField              // called when 'return' key pressed. return NO to ignore.
 {
-    NSURLRequest *request = [NSURLRequest
-                             requestWithURL: [NSURL
-                                              URLWithString: [textField text]]];
-    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    NSURL *url = [NSURL
+                  URLWithString: [textField text]];
+    [_podcast
+     downloadPodcastWithURL:url
+     errorHandler:
+     ^(NSString *title, NSError *error)
+     {
+         dispatch_async(dispatch_get_main_queue(),
+                       ^{
+                           [[[UIAlertView alloc]
+                             initWithTitle:title
+                             message:[error description]
+                             delegate:nil
+                             cancelButtonTitle:@"Ok"
+                             otherButtonTitles:nil]
+                            show];
+                       });
+     }
+     successHandler:^{
+         dispatch_async(dispatch_get_main_queue(),
+                       ^{
+                           [[self tableView] reloadData];
+                        });
+     }];
+    [textField resignFirstResponder];
     return YES;
 }
 
-/// networking
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-    // A response has been received, this is where we initialize the instance var you created
-    // so that we can append data to it in the didReceiveData method
-    // Furthermore, this method is called each time there is a redirect so reinitializing it
-    // also serves to clear it
-    _responseData = [[NSMutableData alloc] init];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    // Append the new data to the instance variable you declared
-    [_responseData appendData:data];
-}
-
-- (NSCachedURLResponse *)connection:(NSURLConnection *)connection
-                  willCacheResponse:(NSCachedURLResponse*)cachedResponse {
-    // Return nil to indicate not necessary to store a cached response for this connection
-    return nil;
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    NSError *error = nil;
-    GDataXMLDocument *doc = [[GDataXMLDocument alloc]
-                             initWithData:_responseData
-                             options:0
-                             error:&error];
-    if (error)
-    {
-        [[[UIAlertView alloc]
-          initWithTitle:@"XML-obtaining error"
-          message:[NSString stringWithFormat:@"%@", error]
-          delegate:nil
-          cancelButtonTitle:@"OK"
-          otherButtonTitles: nil]
-         show];
-        return;
-    }
- 
-    NSArray *items = [doc nodesForXPath:@"//channel/item" error: &error];
-    if (error)
-    {
-        [[[UIAlertView alloc]
-          initWithTitle: @"Parse error"
-          message:[NSString stringWithFormat:@"%@", error]
-          delegate:nil
-          cancelButtonTitle:@"OK"
-          otherButtonTitles: nil]
-         show];
-        return;
-    }
-    // must not rewrite until we know everything is ok
-    _doc = doc;
-    _items = items;
-    
-    
-    [[self tableView] reloadData];
-    
-    // The request is complete and data has been received
-    // You can parse the stuff in your instance variable now
-    
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    [[[UIAlertView alloc]
-      initWithTitle: @"Connection error"
-      message:[NSString stringWithFormat:@"%@", error]
-      delegate:nil
-      cancelButtonTitle:@"OK"
-      otherButtonTitles: nil]
-     show];
-    // The request has failed for some reason!
-    // Check the error var
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 /// table
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_items count];
+    return [_podcast getLength];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -130,23 +115,16 @@
     }
     
     NSInteger row = [indexPath row];
-    GDataXMLElement * item = [_items objectAtIndex:row];
-    
-    NSString *imageUrl = [[[[item elementsForName:@"itunes:image"] objectAtIndex:0]
-                           attributeForName:@"href"] stringValue];
-    
-    NSString *text = [[[item elementsForName:@"title"] objectAtIndex:0] stringValue];
-    UIImage *image = [UIImage imageWithData:
-                      [NSData dataWithContentsOfURL:   // sync, so may cause slowdown
-                       [NSURL URLWithString:imageUrl]]];
-    
-    [[cell textLabel]
-     setText:text];
-    
-    [[cell imageView]
-     setImage:image];
-    
-    return cell;
+    return [_podcast changeCell:cell at:row];
 }
+
+//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+//    NSLog(@"Imma here!");
+//    UITouch *touch = [[event allTouches] anyObject];
+//    if ([self.textField isFirstResponder] && [touch view] != self.textField) {
+//        [self.textField resignFirstResponder];
+//    }
+//    [super touchesBegan:touches withEvent:event];
+//}
 
 @end
