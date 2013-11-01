@@ -27,6 +27,7 @@
 		D7872AE3181563F500998125 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7872AC2181563F500998125 /* UIKit.framework */; };
 		D7872AEB181563F500998125 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D7872AE9181563F500998125 /* InfoPlist.strings */; };
 		D7872AED181563F500998125 /* test01Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = D7872AEC181563F500998125 /* test01Tests.m */; };
+		DAC2C0DB182470E60027F0E3 /* SDWebImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DAC2C0DA182470E60027F0E3 /* SDWebImage.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,7 @@
 		D7872AE8181563F500998125 /* test01Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "test01Tests-Info.plist"; sourceTree = "<group>"; };
 		D7872AEA181563F500998125 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D7872AEC181563F500998125 /* test01Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = test01Tests.m; sourceTree = "<group>"; };
+		DAC2C0DA182470E60027F0E3 /* SDWebImage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = SDWebImage.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 				D7872AC1181563F500998125 /* CoreGraphics.framework in Frameworks */,
 				D7872AC3181563F500998125 /* UIKit.framework in Frameworks */,
 				D7872ABF181563F500998125 /* Foundation.framework in Frameworks */,
+				DAC2C0DB182470E60027F0E3 /* SDWebImage.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,6 +131,7 @@
 				D77AEEA7182445AD00F21F54 /* SDWebImagePrefetcher.h */,
 				D77AEEA8182445AD00F21F54 /* UIButton+WebCache.h */,
 				D77AEEA9182445AD00F21F54 /* UIImageView+WebCache.h */,
+				DAC2C0DA182470E60027F0E3 /* SDWebImage.a */,
 			);
 			name = SDWebImage;
 			sourceTree = "<group>";
@@ -490,6 +494,7 @@
 					"$(inherited)",
 					/Users/dev/Downloads/SDWebImage.framework/Versions/A,
 					/Users/dev/Documents/end06/test01/test01,
+					/Users/paul/Desktop/geekhub_test01/test01,
 				);
 				OTHER_LDFLAGS = (
 					"-lxml2",
@@ -517,6 +522,7 @@
 					"$(inherited)",
 					/Users/dev/Downloads/SDWebImage.framework/Versions/A,
 					/Users/dev/Documents/end06/test01/test01,
+					/Users/paul/Desktop/geekhub_test01/test01,
 				);
 				OTHER_LDFLAGS = (
 					"-lxml2",
