@@ -74,6 +74,11 @@
 -(UITableViewCell*) changeCell:(UITableViewCell *)cell at:(NSInteger)row
 {
     [[cell textLabel] setText: [self getTitleAt:row]];
+    [[cell imageView]
+     setImage:
+     [UIImage imageWithData:
+      [NSData dataWithContentsOfURL:
+       [self getImageURLAt:row]]]];
 //    [[cell imageView]
 //     setImageWithURL: [self getImageURLAt:row]
 //     placeholderImage: [UIImage imageNamed:@"placeholder.png"]];
