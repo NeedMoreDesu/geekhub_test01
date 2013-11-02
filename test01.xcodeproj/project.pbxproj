@@ -213,6 +213,26 @@
 			path = ../SDWebImage;
 			sourceTree = "<group>";
 		};
+		D77AEEF218247A2600F21F54 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				D7872ACD181563F500998125 /* AppDelegate.h */,
+				D7872ACE181563F500998125 /* AppDelegate.m */,
+				D7872AD6181563F500998125 /* ViewController.h */,
+				D7872AD7181563F500998125 /* ViewController.m */,
+			);
+			name = controller;
+			sourceTree = "<group>";
+		};
+		D77AEEF318247A2F00F21F54 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				D7872AD0181563F500998125 /* Main_iPhone.storyboard */,
+				D7872AD3181563F500998125 /* Main_iPad.storyboard */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
 		D7872AB2181563F400998125 = {
 			isa = PBXGroup;
 			children = (
@@ -250,12 +270,8 @@
 			children = (
 				D77AEE9618241D0500F21F54 /* Foreign */,
 				D77AEE811824178100F21F54 /* model */,
-				D7872ACD181563F500998125 /* AppDelegate.h */,
-				D7872ACE181563F500998125 /* AppDelegate.m */,
-				D7872AD0181563F500998125 /* Main_iPhone.storyboard */,
-				D7872AD3181563F500998125 /* Main_iPad.storyboard */,
-				D7872AD6181563F500998125 /* ViewController.h */,
-				D7872AD7181563F500998125 /* ViewController.m */,
+				D77AEEF318247A2F00F21F54 /* view */,
+				D77AEEF218247A2600F21F54 /* controller */,
 				D7872AD9181563F500998125 /* Images.xcassets */,
 				D7872AC5181563F500998125 /* Supporting Files */,
 			);

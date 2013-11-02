@@ -7,7 +7,6 @@
 //
 
 #import "Podcast.h"
-#import "UIImageView+WebCache.h"
 
 @implementation Podcast
 
