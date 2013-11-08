@@ -12,17 +12,16 @@
 
 @interface Podcast : NSObject
 {
-    GDataXMLDocument *_doc;
-    NSArray *_items;
 }
 
-- (void)downloadPodcastWithURL:(NSURL *)URL
-                  errorHandler:(void (^) (NSString *title, NSError *error))errorHandler
-                successHandler:(void (^) ())successHandler;
+@property NSString *title;
+@property NSURL *imageURL;
 
-- (NSInteger) getLength;
-- (NSString*) getTitleAt:(NSInteger)row;
-- (NSURL*) getImageURLAt:(NSInteger)row;
-- (UITableViewCell*) changeCell:(UITableViewCell*)cell at:(NSInteger)row;
++ (void)downloadPodcastWithURL:(NSURL *)URL
+                  errorHandler:(void (^) (NSString *title, NSError *error))errorHandler
+                successHandler:(void (^) (NSArray *podcasts))successHandler;
+
+- initWithTitle:(NSString*)title imageURL:(NSURL *)imageURL;
+-(UITableViewCell*) changeCell:(UITableViewCell *)cell completeHandler:(void (^)(UIImage *image, NSError *error, SDImageCacheType cacheType))handler;
 
 @end

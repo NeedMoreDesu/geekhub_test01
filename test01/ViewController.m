@@ -14,14 +14,25 @@
 @end
 
 @implementation ViewController
+{
+    NSArray *_podcasts;
+    __weak IBOutlet UITextField *_textField;
+    __weak IBOutlet UITableView *_tableView;
+    Reachability* _reach;
+}
+
+- (BOOL)networkIsReachable
+{
+    NetworkStatus remoteHostStatus = [_reach currentReachabilityStatus];
+    return remoteHostStatus != NotReachable;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _podcast = [[Podcast alloc] init];
-    Reachability* reach = [Reachability reachabilityForInternetConnection];
-    [reach startNotifier];
-    reach.unreachableBlock = ^(Reachability*reach)
+    _reach = [Reachability reachabilityForInternetConnection];
+    [_reach startNotifier];
+    _reach.unreachableBlock = ^(Reachability*reach)
     {
         dispatch_async(dispatch_get_main_queue(), ^{
             [[[UIAlertView alloc]
@@ -33,7 +44,7 @@
              show];
         });
     };
-    reach.reachableBlock = ^(Reachability*reach)
+    _reach.reachableBlock = ^(Reachability*reach)
     {
         dispatch_async(dispatch_get_main_queue(), ^{
             [[[UIAlertView alloc]
@@ -46,10 +57,8 @@
         });
     };
 
-    NetworkStatus remoteHostStatus = [reach currentReachabilityStatus];
-    
-    if(remoteHostStatus == NotReachable)
-        [reach unreachableBlock](reach);
+    if(![self networkIsReachable])
+        [_reach unreachableBlock](_reach);
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -62,9 +71,14 @@
 /// text field
 - (BOOL)textFieldShouldReturn:(UITextField *)textField              // called when 'return' key pressed. return NO to ignore.
 {
+    if(![self networkIsReachable])
+    {
+        [_reach unreachableBlock](_reach);
+        return NO;
+    }
     NSURL *url = [NSURL
                   URLWithString: [textField text]];
-    [_podcast
+    [Podcast
      downloadPodcastWithURL:url
      errorHandler:
      ^(NSString *title, NSError *error)
@@ -80,10 +94,11 @@
                             show];
                        });
      }
-     successHandler:^{
+     successHandler:^(NSArray *podcasts) {
          dispatch_async(dispatch_get_main_queue(),
-                       ^{
-                           [[self tableView] reloadData];
+                        ^{
+                            _podcasts = podcasts;
+                            [_tableView reloadData];
                         });
      }];
     [textField resignFirstResponder];
@@ -99,7 +114,7 @@
 /// table
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_podcast getLength];
+    return [_podcasts count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -115,7 +130,20 @@
     }
     
     NSInteger row = [indexPath row];
-    return [_podcast changeCell:cell at:row];
+    Podcast *podcast = [_podcasts objectAtIndex:row];
+    return [podcast
+            changeCell:cell
+            completeHandler:^(UIImage *image, NSError *error, SDImageCacheType cacheType)
+    {
+        dispatch_async(dispatch_get_main_queue(),
+                       ^{
+                           [tableView beginUpdates];
+                           [tableView
+                            reloadRowsAtIndexPaths:@[indexPath]
+                            withRowAnimation:UITableViewRowAnimationNone];
+                           [tableView endUpdates];
+                       });
+    }];
 }
 
 //- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {

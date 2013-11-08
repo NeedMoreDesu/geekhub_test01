@@ -41,6 +41,7 @@
 		D7872AE3181563F500998125 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7872AC2181563F500998125 /* UIKit.framework */; };
 		D7872AEB181563F500998125 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D7872AE9181563F500998125 /* InfoPlist.strings */; };
 		D7872AED181563F500998125 /* test01Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = D7872AEC181563F500998125 /* test01Tests.m */; };
+		D78F4336182D5A990009C1B0 /* NSArray+Func.m in Sources */ = {isa = PBXBuildFile; fileRef = D78F4335182D5A990009C1B0 /* NSArray+Func.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +112,8 @@
 		D7872AE8181563F500998125 /* test01Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "test01Tests-Info.plist"; sourceTree = "<group>"; };
 		D7872AEA181563F500998125 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D7872AEC181563F500998125 /* test01Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = test01Tests.m; sourceTree = "<group>"; };
+		D78F4334182D5A990009C1B0 /* NSArray+Func.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Func.h"; sourceTree = "<group>"; };
+		D78F4335182D5A990009C1B0 /* NSArray+Func.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Func.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,6 +271,7 @@
 		D7872AC4181563F500998125 /* test01 */ = {
 			isa = PBXGroup;
 			children = (
+				D7EBBA4A182D709D00BC52D3 /* Additional */,
 				D77AEE9618241D0500F21F54 /* Foreign */,
 				D77AEE811824178100F21F54 /* model */,
 				D77AEEF318247A2F00F21F54 /* view */,
@@ -305,6 +309,15 @@
 				D7872AE9181563F500998125 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D7EBBA4A182D709D00BC52D3 /* Additional */ = {
+			isa = PBXGroup;
+			children = (
+				D78F4334182D5A990009C1B0 /* NSArray+Func.h */,
+				D78F4335182D5A990009C1B0 /* NSArray+Func.m */,
+			);
+			name = Additional;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -408,6 +421,7 @@
 				D77AEE87182417DC00F21F54 /* Podcast.m in Sources */,
 				D77AEEEB1824773B00F21F54 /* SDWebImageManager.m in Sources */,
 				D77AEEF11824773B00F21F54 /* UIImageView+WebCache.m in Sources */,
+				D78F4336182D5A990009C1B0 /* NSArray+Func.m in Sources */,
 				D77AEEE61824773B00F21F54 /* SDImageCache.m in Sources */,
 				D77AEEEA1824773B00F21F54 /* SDWebImageDownloaderOperation.m in Sources */,
 				D7872AD8181563F500998125 /* ViewController.m in Sources */,

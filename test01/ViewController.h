@@ -12,11 +12,5 @@
 @interface ViewController : UIViewController
 <UITableViewDataSource, UITableViewDelegate,
 UITextFieldDelegate>
-{
-    Podcast *_podcast;
-}
-
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UITextField *textField;
 
 @end

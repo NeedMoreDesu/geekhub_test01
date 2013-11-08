@@ -7,12 +7,13 @@
 //
 
 #import "Podcast.h"
+#import "NSArray+Func.h"
 
 @implementation Podcast
 
-- (void)downloadPodcastWithURL:(NSURL *)URL
++ (void)downloadPodcastWithURL:(NSURL *)URL
                   errorHandler:(void (^) (NSString *title, NSError *error))errorHandler
-                successHandler:(void (^)())successHandler
+                successHandler:(void (^) (NSArray *podcasts))successHandler
 {
     NSURLRequest *request = [NSURLRequest
                              requestWithURL: URL];
@@ -43,40 +44,47 @@
              errorHandler(@"Parsing error", error);
              return;
          }
-         // must not rewrite until we know everything is ok
-         _doc = doc;
-         _items = items;
-         successHandler();
+         NSArray *podcasts =
+         [items
+          map:
+          ^id(id arg)
+          {
+              GDataXMLElement *item = arg;
+              NSString *title = [[[item elementsForName:@"title"]
+                                  objectAtIndex:0]
+                                 stringValue];
+              NSURL *imageURL = [NSURL
+                                 URLWithString:
+                                 [[[[item elementsForName:@"itunes:image"]
+                                    objectAtIndex:0]
+                                   attributeForName:@"href"]
+                                  stringValue]];
+              Podcast *podcast = [[Podcast alloc]
+                                  initWithTitle:title
+                                  imageURL:imageURL];
+              return podcast;
+          }];
+         successHandler(podcasts);
      }];
     
 }
 
-- (NSInteger) getLength
+-(id)initWithTitle:(NSString *)title imageURL:(NSURL *)imageURL
 {
-    return [_items count];
+    if(self = [super init])
+    {
+        [self setTitle:title];
+        [self setImageURL:imageURL];
+    }
+    return self;
 }
 
-- (NSString*) getTitleAt:(NSInteger)row
+-(UITableViewCell*) changeCell:(UITableViewCell *)cell completeHandler:(void (^)(UIImage *image, NSError *error, SDImageCacheType cacheType))handler
 {
-    GDataXMLElement * item = [_items objectAtIndex:row];
-    return [[[item elementsForName:@"title"] objectAtIndex:0] stringValue];
-}
-
-- (NSURL*) getImageURLAt:(NSInteger)row
-{
-    GDataXMLElement * item = [_items objectAtIndex:row];
-    return [NSURL
-            URLWithString:
-            [[[[item elementsForName:@"itunes:image"] objectAtIndex:0]
-             attributeForName:@"href"] stringValue]];
-}
-
--(UITableViewCell*) changeCell:(UITableViewCell *)cell at:(NSInteger)row
-{
-    [[cell textLabel] setText: [self getTitleAt:row]];
+    [[cell textLabel] setText: [self title]];
     [[cell imageView]
-     setImageWithURL: [self getImageURLAt:row]
-     placeholderImage: [UIImage imageNamed:@"placeholder.png"]];
+     setImageWithURL: [self imageURL]
+     completed: handler];
     return cell;
 }
 
