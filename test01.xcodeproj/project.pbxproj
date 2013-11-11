@@ -41,6 +41,11 @@
 		D7872AE3181563F500998125 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7872AC2181563F500998125 /* UIKit.framework */; };
 		D7872AEB181563F500998125 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D7872AE9181563F500998125 /* InfoPlist.strings */; };
 		D7872AED181563F500998125 /* test01Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = D7872AEC181563F500998125 /* test01Tests.m */; };
+		D78CDACF183186C700280ECF /* album_art_base.png in Resources */ = {isa = PBXBuildFile; fileRef = D78CDACE183186C700280ECF /* album_art_base.png */; };
+		D78CDAD61831870900280ECF /* controls_button_background.png in Resources */ = {isa = PBXBuildFile; fileRef = D78CDAD21831870900280ECF /* controls_button_background.png */; };
+		D78CDAD71831870900280ECF /* controls_button_foreground_minus_15.png in Resources */ = {isa = PBXBuildFile; fileRef = D78CDAD31831870900280ECF /* controls_button_foreground_minus_15.png */; };
+		D78CDAD81831870900280ECF /* controls_button_foreground_next.png in Resources */ = {isa = PBXBuildFile; fileRef = D78CDAD41831870900280ECF /* controls_button_foreground_next.png */; };
+		D78CDAD91831870900280ECF /* controls_button_foreground_pause.png in Resources */ = {isa = PBXBuildFile; fileRef = D78CDAD51831870900280ECF /* controls_button_foreground_pause.png */; };
 		D78F4336182D5A990009C1B0 /* NSArray+Func.m in Sources */ = {isa = PBXBuildFile; fileRef = D78F4335182D5A990009C1B0 /* NSArray+Func.m */; };
 /* End PBXBuildFile section */
 
@@ -112,6 +117,11 @@
 		D7872AE8181563F500998125 /* test01Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "test01Tests-Info.plist"; sourceTree = "<group>"; };
 		D7872AEA181563F500998125 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D7872AEC181563F500998125 /* test01Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = test01Tests.m; sourceTree = "<group>"; };
+		D78CDACE183186C700280ECF /* album_art_base.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = album_art_base.png; path = ../album_art_base.png; sourceTree = "<group>"; };
+		D78CDAD21831870900280ECF /* controls_button_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = controls_button_background.png; sourceTree = "<group>"; };
+		D78CDAD31831870900280ECF /* controls_button_foreground_minus_15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = controls_button_foreground_minus_15.png; sourceTree = "<group>"; };
+		D78CDAD41831870900280ECF /* controls_button_foreground_next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = controls_button_foreground_next.png; sourceTree = "<group>"; };
+		D78CDAD51831870900280ECF /* controls_button_foreground_pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = controls_button_foreground_pause.png; sourceTree = "<group>"; };
 		D78F4334182D5A990009C1B0 /* NSArray+Func.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Func.h"; sourceTree = "<group>"; };
 		D78F4335182D5A990009C1B0 /* NSArray+Func.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Func.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -271,6 +281,7 @@
 		D7872AC4181563F500998125 /* test01 */ = {
 			isa = PBXGroup;
 			children = (
+				D78CDAD0183186DA00280ECF /* res */,
 				D7EBBA4A182D709D00BC52D3 /* Additional */,
 				D77AEE9618241D0500F21F54 /* Foreign */,
 				D77AEE811824178100F21F54 /* model */,
@@ -309,6 +320,26 @@
 				D7872AE9181563F500998125 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D78CDAD0183186DA00280ECF /* res */ = {
+			isa = PBXGroup;
+			children = (
+				D78CDAD1183186E100280ECF /* img */,
+			);
+			name = res;
+			sourceTree = "<group>";
+		};
+		D78CDAD1183186E100280ECF /* img */ = {
+			isa = PBXGroup;
+			children = (
+				D78CDACE183186C700280ECF /* album_art_base.png */,
+				D78CDAD21831870900280ECF /* controls_button_background.png */,
+				D78CDAD31831870900280ECF /* controls_button_foreground_minus_15.png */,
+				D78CDAD41831870900280ECF /* controls_button_foreground_next.png */,
+				D78CDAD51831870900280ECF /* controls_button_foreground_pause.png */,
+			);
+			name = img;
 			sourceTree = "<group>";
 		};
 		D7EBBA4A182D709D00BC52D3 /* Additional */ = {
@@ -397,9 +428,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7872AD5181563F500998125 /* Main_iPad.storyboard in Resources */,
+				D78CDACF183186C700280ECF /* album_art_base.png in Resources */,
 				D7872ADA181563F500998125 /* Images.xcassets in Resources */,
+				D78CDAD91831870900280ECF /* controls_button_foreground_pause.png in Resources */,
 				D7872AD2181563F500998125 /* Main_iPhone.storyboard in Resources */,
+				D78CDAD71831870900280ECF /* controls_button_foreground_minus_15.png in Resources */,
+				D78CDAD81831870900280ECF /* controls_button_foreground_next.png in Resources */,
 				D7872AC9181563F500998125 /* InfoPlist.strings in Resources */,
+				D78CDAD61831870900280ECF /* controls_button_background.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
