@@ -79,13 +79,4 @@
     return self;
 }
 
--(UITableViewCell*) changeCell:(UITableViewCell *)cell completeHandler:(void (^)(UIImage *image, NSError *error, SDImageCacheType cacheType))handler
-{
-    [[cell textLabel] setText: [self title]];
-    [[cell imageView]
-     setImageWithURL: [self imageURL]
-     completed: handler];
-    return cell;
-}
-
 @end

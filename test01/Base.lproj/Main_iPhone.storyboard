@@ -75,10 +75,10 @@
             </objects>
             <point key="canvasLocation" x="450" y="120"/>
         </scene>
-        <!--View Controller - Child-->
+        <!--View Controller Player - Child-->
         <scene sceneID="aNw-bz-nqL">
             <objects>
-                <viewController id="BPV-p2-XvV" sceneMemberID="viewController">
+                <viewController id="BPV-p2-XvV" customClass="ViewControllerPlayer" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="s1Q-U1-xks"/>
                         <viewControllerLayoutGuide type="bottom" id="0zj-mP-vE9"/>
@@ -88,35 +88,42 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="album_art_base.png" translatesAutoresizingMaskIntoConstraints="NO" id="E86-6T-qzT">
-                                <rect key="frame" x="17" y="87" width="287" height="287"/>
+                                <rect key="frame" x="17" y="87" width="286" height="286"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gvP-Uo-P5S">
-                                <rect key="frame" x="68" y="419" width="56" height="56"/>
+                                <rect key="frame" x="69" y="419" width="55" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="controls_button_foreground_minus_15.png" backgroundImage="controls_button_background.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vkF-C4-ONQ">
-                                <rect key="frame" x="132" y="419" width="56" height="56"/>
+                                <rect key="frame" x="132" y="419" width="55" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="controls_button_foreground_pause.png" backgroundImage="controls_button_background.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A3Q-Xk-nIp">
-                                <rect key="frame" x="196" y="419" width="56" height="56"/>
+                                <rect key="frame" x="195" y="419" width="55" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="controls_button_foreground_next.png" backgroundImage="controls_button_background.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="v8w-WR-OBC">
+                                <rect key="frame" x="17" y="357" width="286" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" red="0.19753649635036497" green="0.19753649635036497" blue="0.23403284671532848" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Child" id="g0d-gU-NSS"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <connections>
+                        <outlet property="_slider" destination="v8w-WR-OBC" id="Lnu-eK-C9C"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6zr-5R-YZA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -124,8 +131,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="album_art_base.png" width="287" height="287"/>
-        <image name="controls_button_background.png" width="56" height="56"/>
+        <image name="album_art_base.png" width="286" height="286"/>
+        <image name="controls_button_background.png" width="55" height="55"/>
         <image name="controls_button_foreground_minus_15.png" width="24" height="26"/>
         <image name="controls_button_foreground_next.png" width="22" height="14"/>
         <image name="controls_button_foreground_pause.png" width="13" height="22"/>

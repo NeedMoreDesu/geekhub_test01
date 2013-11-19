@@ -14,34 +14,24 @@
 {
     NSUInteger count = [self count];
     NSMutableArray *newArr = [[NSMutableArray alloc] initWithCapacity:count];
-    NSUInteger idx;
-    for (idx = 0; idx < count; idx++)
-    {
-        id item = [self objectAtIndex:idx];
-        id newItem = block(idx, item);
+    [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        id newItem = block(idx, obj);
         [newArr insertObject:newItem atIndex:idx];
-    }
+    }];
     return newArr;
 }
 
 - (NSArray *) map:(id (^) (id item))block
 {
-    return [self
-            mapWithBlockIndexed: ^id(NSUInteger idx, id item)
-            {
-                return block(item);
-            }];
+    NSUInteger count = [self count];
+    NSMutableArray *newArr = [[NSMutableArray alloc] initWithCapacity:count];
+    [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        id newItem = block(obj);
+        [newArr insertObject:newItem atIndex:idx];
+    }];
+    return newArr;
 }
 
-- (NSArray *) mapWithSelector: (SEL)selector
-{
-    return [self map:^id(id item) {
-        if([item respondsToSelector:selector])
-            return [item performSelector:selector];
-        else
-            return item;
-    }];
-}
 - (id) reduce:(id (^) (id accumulator, id item))block withAccumulator:(id)accumulator
 {
     id acc = accumulator;

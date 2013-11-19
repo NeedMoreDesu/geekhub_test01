@@ -22,6 +22,5 @@
                 successHandler:(void (^) (NSArray *podcasts))successHandler;
 
 - initWithTitle:(NSString*)title imageURL:(NSURL *)imageURL;
--(UITableViewCell*) changeCell:(UITableViewCell *)cell completeHandler:(void (^)(UIImage *image, NSError *error, SDImageCacheType cacheType))handler;
 
 @end

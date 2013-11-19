@@ -143,19 +143,23 @@
     
     NSInteger row = [indexPath row];
     Podcast *podcast = [_podcasts objectAtIndex:row];
-    return [podcast
-            changeCell:cell
-            completeHandler:^(UIImage *image, NSError *error, SDImageCacheType cacheType)
-    {
-        dispatch_async(dispatch_get_main_queue(),
-                       ^{
-                           [tableView beginUpdates];
-                           [tableView
-                            reloadRowsAtIndexPaths:@[indexPath]
-                            withRowAnimation:UITableViewRowAnimationNone];
-                           [tableView endUpdates];
-                       });
-    }];
+    
+    [[cell textLabel] setText: [podcast title]];
+    [[cell imageView]
+     setImageWithURL: [podcast imageURL]
+     completed: ^(UIImage *image, NSError *error, SDImageCacheType cacheType)
+     {
+         dispatch_async(dispatch_get_main_queue(),
+                        ^{
+                            [tableView beginUpdates];
+                            [tableView
+                             reloadRowsAtIndexPaths:@[indexPath]
+                             withRowAnimation:UITableViewRowAnimationNone];
+                            [tableView endUpdates];
+                        });
+     }];
+    
+    return cell;
 }
 
 //- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {

@@ -12,7 +12,6 @@
 
 - (NSArray *) mapWithBlockIndexed:(id (^) (NSUInteger idx, id item))block;
 - (NSArray *) map:(id (^) (id item))block;
-- (NSArray *) mapWithSelector: (SEL)selector;
 - (id) reduce:(id (^) (id accumulator, id item))block withAccumulator:(id)accumulator;
 - (id) reduce:(id (^) (id accumulator, id item))block;
 - (NSArray *) filter:(BOOL (^) (NSUInteger idx, id item))block;
