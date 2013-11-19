@@ -49,6 +49,7 @@
     [_slider
      setThumbImage:thumbImage
      forState:UIControlStateNormal];
+    
 	// Do any additional setup after loading the view.
 }
 
