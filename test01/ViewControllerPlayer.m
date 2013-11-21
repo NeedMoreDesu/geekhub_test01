@@ -32,12 +32,12 @@
     UIImage *minImage =
     [[UIImage imageNamed:@"album_seeker_progress"]
      resizableImageWithCapInsets:UIEdgeInsetsMake(0, 4, 0, 0)
-     resizingMode:UIImageResizingModeStretch
+//     resizingMode:UIImageResizingModeStretch
      ];
     UIImage *maxImage =
     [[UIImage imageNamed:@"album_seeker_base"]
      resizableImageWithCapInsets:UIEdgeInsetsMake(0, 3, 0, 3)
-     resizingMode:UIImageResizingModeStretch
+//     resizingMode:UIImageResizingModeStretch
      ];
     UIImage *thumbImage = [UIImage imageNamed:@"album_seeker_pointer"];
     [_slider
