@@ -7,6 +7,7 @@
 //
 
 #import "ViewControllerPlayer.h"
+#import "UIImageView+WebCache.h"
 
 @interface ViewControllerPlayer ()
 {
@@ -55,6 +56,8 @@
      setThumbImage:thumbImage
      forState:UIControlStateNormal];
     
+    [_picture
+     setImageWithURL: [[self podcastItem] imageURL]];
     [[_picture layer] setCornerRadius:5.0];
     [[_picture layer] setMasksToBounds:YES];
     
