@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D77AEE87182417DC00F21F54 /* Podcast.m in Sources */ = {isa = PBXBuildFile; fileRef = D77AEE86182417DC00F21F54 /* Podcast.m */; };
+		D72089F4184029D000282A19 /* Podcast.m in Sources */ = {isa = PBXBuildFile; fileRef = D72089F3184029D000282A19 /* Podcast.m */; };
+		D77AEE87182417DC00F21F54 /* PodcastItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D77AEE86182417DC00F21F54 /* PodcastItem.m */; };
 		D77AEE9818241D5900F21F54 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D77AEE9718241D5900F21F54 /* ImageIO.framework */; };
 		D77AEE9D18241DEA00F21F54 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D77AEE9B18241DEA00F21F54 /* Reachability.m */; };
 		D77AEE9F18241E1A00F21F54 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D77AEE9E18241E1A00F21F54 /* SystemConfiguration.framework */; };
@@ -74,8 +75,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D77AEE85182417DC00F21F54 /* Podcast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Podcast.h; sourceTree = "<group>"; };
-		D77AEE86182417DC00F21F54 /* Podcast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Podcast.m; sourceTree = "<group>"; };
+		D72089F2184029D000282A19 /* Podcast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Podcast.h; sourceTree = "<group>"; };
+		D72089F3184029D000282A19 /* Podcast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Podcast.m; sourceTree = "<group>"; };
+		D77AEE85182417DC00F21F54 /* PodcastItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PodcastItem.h; sourceTree = "<group>"; };
+		D77AEE86182417DC00F21F54 /* PodcastItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PodcastItem.m; sourceTree = "<group>"; };
 		D77AEE9718241D5900F21F54 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		D77AEE9B18241DEA00F21F54 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		D77AEE9C18241DEA00F21F54 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -184,8 +187,10 @@
 		D77AEE811824178100F21F54 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				D77AEE85182417DC00F21F54 /* Podcast.h */,
-				D77AEE86182417DC00F21F54 /* Podcast.m */,
+				D77AEE85182417DC00F21F54 /* PodcastItem.h */,
+				D77AEE86182417DC00F21F54 /* PodcastItem.m */,
+				D72089F2184029D000282A19 /* Podcast.h */,
+				D72089F3184029D000282A19 /* Podcast.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -511,7 +516,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D77AEE87182417DC00F21F54 /* Podcast.m in Sources */,
+				D77AEE87182417DC00F21F54 /* PodcastItem.m in Sources */,
 				D77AEEEB1824773B00F21F54 /* SDWebImageManager.m in Sources */,
 				D77AEEF11824773B00F21F54 /* UIImageView+WebCache.m in Sources */,
 				D78F4336182D5A990009C1B0 /* NSArray+Func.m in Sources */,
@@ -523,6 +528,7 @@
 				D77AEEEC1824773B00F21F54 /* SDWebImagePrefetcher.m in Sources */,
 				D77AEEE91824773B00F21F54 /* SDWebImageDownloader.m in Sources */,
 				D77AEEE51824773B00F21F54 /* NSData+GIF.m in Sources */,
+				D72089F4184029D000282A19 /* Podcast.m in Sources */,
 				D77AEEF01824773B00F21F54 /* UIImage+WebP.m in Sources */,
 				D77AEEE81824773B00F21F54 /* SDWebImageDecoder.m in Sources */,
 				D7872ACF181563F500998125 /* AppDelegate.m in Sources */,
@@ -677,6 +683,7 @@
 					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = "test01/test01-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/dev/Downloads/SDWebImage.framework/Versions/A,
@@ -704,6 +711,7 @@
 					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = "test01/test01-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/dev/Downloads/SDWebImage.framework/Versions/A,

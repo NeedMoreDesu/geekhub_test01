@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Podcast.h"
 
 @interface ViewController : UIViewController
 <UITableViewDataSource, UITableViewDelegate,

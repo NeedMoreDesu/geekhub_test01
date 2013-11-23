@@ -11,6 +11,11 @@
 @interface ViewControllerPlayer ()
 {
     __weak IBOutlet UISlider *_slider;
+    __weak IBOutlet UIImageView *_picture;
+    __weak IBOutlet UILabel *_timer;
+    __weak IBOutlet UILabel *_podcastItemTitle;
+    __weak IBOutlet UILabel *_podcastTitle;
+    __weak IBOutlet UILabel *_author;
 }
 
 @end
@@ -49,6 +54,16 @@
     [_slider
      setThumbImage:thumbImage
      forState:UIControlStateNormal];
+    
+    [[_picture layer] setCornerRadius:5.0];
+    [[_picture layer] setMasksToBounds:YES];
+    
+    [_podcastItemTitle
+     setText: [[self podcastItem] title]];
+    [_podcastTitle
+     setText: [[self podcast] title]];
+    [_author
+     setText: [[self podcastItem] author]];
     
 	// Do any additional setup after loading the view.
 }

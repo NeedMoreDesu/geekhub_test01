@@ -8,6 +8,10 @@
 
 #import "Reachability.h"
 #import "ViewController.h"
+#import "PodcastItem.h"
+#import "Podcast.h"
+#import "UIImageView+WebCache.h"
+#import "ViewControllerPlayer.h"
 
 @interface ViewController ()
 
@@ -15,7 +19,8 @@
 
 @implementation ViewController
 {
-    NSArray *_podcasts;
+    NSArray *_podcastItems;
+    Podcast *_podcast;
     __weak IBOutlet UITextField *_textField;
     __weak IBOutlet UITableView *_tableView;
     Reachability* _reach;
@@ -80,6 +85,20 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)simpleErrorString:(NSString*)title error:(NSError*)error
+{
+    dispatch_async(dispatch_get_main_queue(),
+                   ^{
+                       [[[UIAlertView alloc]
+                         initWithTitle:title
+                         message:[error description]
+                         delegate:nil
+                         cancelButtonTitle:@"Ok"
+                         otherButtonTitles:nil]
+                        show];
+                   });
+}
+
 /// text field
 - (BOOL)textFieldShouldReturn:(UITextField *)textField              // called when 'return' key pressed. return NO to ignore.
 {
@@ -90,29 +109,52 @@
     }
     NSURL *url = [NSURL
                   URLWithString: [textField text]];
-    [Podcast
-     downloadPodcastWithURL:url
-     errorHandler:
-     ^(NSString *title, NSError *error)
+    NSURLRequest *request = [NSURLRequest
+                             requestWithURL: url];
+    [NSURLConnection
+     sendAsynchronousRequest:request
+     queue:[[NSOperationQueue alloc] init]
+     completionHandler:
+     ^(NSURLResponse *response, NSData *data, NSError *error)
      {
-         dispatch_async(dispatch_get_main_queue(),
-                       ^{
-                           [[[UIAlertView alloc]
-                             initWithTitle:title
-                             message:[error description]
-                             delegate:nil
-                             cancelButtonTitle:@"Ok"
-                             otherButtonTitles:nil]
-                            show];
-                       });
-     }
-     successHandler:^(NSArray *podcasts) {
+         if(error)
+         {
+             [self simpleErrorString:@"Connection error" error:error];
+             return;
+         }
+         GDataXMLDocument *doc = [[GDataXMLDocument alloc]
+                                  initWithData:data
+                                  options:0
+                                  error:&error];
+         if (error)
+         {
+             [self simpleErrorString:@"XML-obtaining error" error:error];
+             return;
+         }
+         NSArray *podcastItems = [PodcastItem
+                                  podcastItemsWithXML:doc
+                                  error:error];
+         if (error)
+         {
+             [self simpleErrorString:@"Given url have no podcast items" error:nil];
+             return;
+         }
+         Podcast *podcast = [Podcast
+                             podcastWithXML:doc
+                             error:error];
+         if (error)
+         {
+             [self simpleErrorString:@"Given url have no podcast title" error:nil];
+             return;
+         }
          dispatch_async(dispatch_get_main_queue(),
                         ^{
-                            _podcasts = podcasts;
+                            _podcast = podcast;
+                            _podcastItems = podcastItems;
                             [_tableView reloadData];
                         });
      }];
+    
     [textField resignFirstResponder];
     return YES;
 }
@@ -126,27 +168,29 @@
 /// table
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_podcasts count];
+    return [_podcastItems count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"PodcastItemCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if(cell == nil)
     {
         cell = [[UITableViewCell alloc]
+//                initWithStyle:UITableViewCellStyleSubtitle
                 initWithStyle:UITableViewCellStyleDefault
                 reuseIdentifier:CellIdentifier];
     }
     
     NSInteger row = [indexPath row];
-    Podcast *podcast = [_podcasts objectAtIndex:row];
+    PodcastItem *podcastItem = [_podcastItems objectAtIndex:row];
     
-    [[cell textLabel] setText: [podcast title]];
+    [[cell textLabel] setText: [podcastItem title]];
+    [[cell detailTextLabel] setText: [podcastItem author]];
     [[cell imageView]
-     setImageWithURL: [podcast imageURL]
+     setImageWithURL: [podcastItem imageURL]
      completed: ^(UIImage *image, NSError *error, SDImageCacheType cacheType)
      {
          dispatch_async(dispatch_get_main_queue(),
@@ -162,13 +206,19 @@
     return cell;
 }
 
-//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-//    NSLog(@"Imma here!");
-//    UITouch *touch = [[event allTouches] anyObject];
-//    if ([self.textField isFirstResponder] && [touch view] != self.textField) {
-//        [self.textField resignFirstResponder];
-//    }
-//    [super touchesBegan:touches withEvent:event];
-//}
+///segues
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([[segue identifier] isEqualToString:@"PodcastItemShow"])
+    {
+        NSIndexPath *selectedRowIndex = [_tableView indexPathForSelectedRow];
+        ViewControllerPlayer *viewControllerPlayer = [segue destinationViewController];
+        [viewControllerPlayer
+         setPodcastItem:[_podcastItems
+                         objectAtIndex:[selectedRowIndex row]]];
+        [viewControllerPlayer
+         setPodcast:_podcast];
+    }
+}
 
 @end

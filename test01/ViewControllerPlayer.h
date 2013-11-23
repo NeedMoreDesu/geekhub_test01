@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Podcast.h"
+#import "PodcastItem.h"
 
 @interface ViewControllerPlayer : UIViewController
+
+@property PodcastItem *podcastItem;
+@property Podcast *podcast;
 
 @end
