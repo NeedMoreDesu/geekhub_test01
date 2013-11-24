@@ -53,7 +53,12 @@
 {
     Float64 currentSeconds = CMTimeGetSeconds(arg);
     int mins = currentSeconds/60.0;
+    int hours = mins/60.0;
+    mins = fmodf(mins, 60.0);
     int secs = fmodf(currentSeconds, 60.0);
+    NSString *hoursString = hours < 10 ?
+    [NSString stringWithFormat:@"0%d", hours] :
+    [NSString stringWithFormat:@"%d", hours];
     NSString *minsString = mins < 10 ?
     [NSString stringWithFormat:@"0%d", mins] :
     [NSString stringWithFormat:@"%d", mins];
@@ -61,7 +66,8 @@
     [NSString stringWithFormat:@"0%d", secs] :
     [NSString stringWithFormat:@"%d", secs];
     return [NSString
-            stringWithFormat:@"%@:%@",
+            stringWithFormat:@"%@:%@:%@",
+            hoursString,
             minsString,
             secsString];
 }
