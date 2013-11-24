@@ -27,6 +27,7 @@
 		D77AEEF01824773B00F21F54 /* UIImage+WebP.m in Sources */ = {isa = PBXBuildFile; fileRef = D77AEEE11824773B00F21F54 /* UIImage+WebP.m */; };
 		D77AEEF11824773B00F21F54 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D77AEEE31824773B00F21F54 /* UIImageView+WebCache.m */; };
 		D77B3262181D77EF00C4720B /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D77B3261181D77EF00C4720B /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D7824EC7184266A6006DBF60 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7824EC6184266A6006DBF60 /* AVFoundation.framework */; };
 		D784070C183AD1ED0095D26C /* ViewControllerPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D784070B183AD1ED0095D26C /* ViewControllerPlayer.m */; };
 		D7840723183AEA2D0095D26C /* album_seeker_pointer.png in Resources */ = {isa = PBXBuildFile; fileRef = D7840711183AEA2D0095D26C /* album_seeker_pointer.png */; };
 		D7840724183AEA2D0095D26C /* album_seeker_base.png in Resources */ = {isa = PBXBuildFile; fileRef = D7840712183AEA2D0095D26C /* album_seeker_base.png */; };
@@ -114,6 +115,7 @@
 		D77AEEE31824773B00F21F54 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		D77B3260181D77EF00C4720B /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GDataXMLNode.h; path = xml/GDataXMLNode.h; sourceTree = "<group>"; };
 		D77B3261181D77EF00C4720B /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GDataXMLNode.m; path = xml/GDataXMLNode.m; sourceTree = "<group>"; };
+		D7824EC6184266A6006DBF60 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D784070A183AD1ED0095D26C /* ViewControllerPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerPlayer.h; sourceTree = "<group>"; };
 		D784070B183AD1ED0095D26C /* ViewControllerPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerPlayer.m; sourceTree = "<group>"; };
 		D7840711183AEA2D0095D26C /* album_seeker_pointer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = album_seeker_pointer.png; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7824EC7184266A6006DBF60 /* AVFoundation.framework in Frameworks */,
 				D77AEE9F18241E1A00F21F54 /* SystemConfiguration.framework in Frameworks */,
 				D77AEE9818241D5900F21F54 /* ImageIO.framework in Frameworks */,
 				D7872AC1181563F500998125 /* CoreGraphics.framework in Frameworks */,
@@ -304,6 +307,7 @@
 		D7872ABD181563F400998125 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D7824EC6184266A6006DBF60 /* AVFoundation.framework */,
 				D77AEE9E18241E1A00F21F54 /* SystemConfiguration.framework */,
 				D77AEE9718241D5900F21F54 /* ImageIO.framework */,
 				D7872ABE181563F400998125 /* Foundation.framework */,

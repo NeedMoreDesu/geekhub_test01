@@ -19,9 +19,8 @@
     NSArray *podcastItems =
     [items
      map:
-     ^id(id arg)
+     ^id(GDataXMLElement *item)
      {
-         GDataXMLElement *item = arg;
          NSString *title = [[[item elementsForName:@"title"]
                              objectAtIndex:0]
                             stringValue];
@@ -39,7 +38,7 @@
                         objectAtIndex:0]
                        stringValue];
          NSArray *media = [[item elementsForName:@"enclosure"]
-                           map:^id(id item) {
+                           map:^id(GDataXMLElement* item) {
                                return [NSURL
                                        URLWithString:
                                        [[item attributeForName:@"url"]

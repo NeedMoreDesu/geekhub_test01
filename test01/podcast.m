@@ -13,7 +13,7 @@
 + (Podcast*)podcastWithXML:(GDataXMLDocument *)doc error:(NSError*)error
 {
     GDataXMLElement *channel = [[doc nodesForXPath:@"//channel" error: &error]
-                             objectAtIndex:0];
+                                objectAtIndex:0];
     if (error)
         return nil;
     

@@ -72,7 +72,7 @@
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="RcZ-1E-7bc"/>
                                 </connections>
                             </tableView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="http://podcasts.obreey.com/ukrlitpodcast/rss.xml" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T1L-h2-B7j">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="http://obrazovanie.rpod.ru/rss.xml" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T1L-h2-B7j">
                                 <rect key="frame" x="20" y="20" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -119,6 +119,10 @@
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="v8w-WR-OBC">
                                 <rect key="frame" x="17" y="355" width="286" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="sliderChanged:" destination="BPV-p2-XvV" eventType="touchUpInside" id="Hy4-DF-PIS"/>
+                                    <action selector="sliderChanging:" destination="BPV-p2-XvV" eventType="valueChanged" id="QZZ-mm-rhQ"/>
+                                </connections>
                             </slider>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gvP-Uo-P5S">
                                 <rect key="frame" x="70" y="406" width="55" height="55"/>
@@ -126,6 +130,9 @@
                                 <state key="normal" image="controls_button_foreground_minus_15.png" backgroundImage="controls_button_background.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="rewind15Sec:" destination="BPV-p2-XvV" eventType="touchUpInside" id="mzX-dL-8LK"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vkF-C4-ONQ">
                                 <rect key="frame" x="133" y="406" width="55" height="55"/>
@@ -133,6 +140,9 @@
                                 <state key="normal" image="controls_button_foreground_pause.png" backgroundImage="controls_button_background.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="playOrResume:" destination="BPV-p2-XvV" eventType="touchUpInside" id="dya-aD-aMo"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A3Q-Xk-nIp">
                                 <rect key="frame" x="196" y="406" width="55" height="55"/>
@@ -140,6 +150,9 @@
                                 <state key="normal" image="controls_button_foreground_next.png" backgroundImage="controls_button_background.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="nextTrack:" destination="BPV-p2-XvV" eventType="touchUpInside" id="RR5-RL-VdI"/>
+                                </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:23:15 / 01:05:10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h7B-tZ-8Pg">
                                 <rect key="frame" x="20" y="376" width="280" height="15"/>
@@ -180,7 +193,7 @@
                         <outlet property="_podcastItemTitle" destination="Eky-Y3-KiJ" id="kdt-In-GkF"/>
                         <outlet property="_podcastTitle" destination="lQu-ph-wl0" id="VPr-1D-Glu"/>
                         <outlet property="_slider" destination="v8w-WR-OBC" id="Lnu-eK-C9C"/>
-                        <outlet property="_timer" destination="h7B-tZ-8Pg" id="zli-zw-ePs"/>
+                        <outlet property="_time" destination="h7B-tZ-8Pg" id="Coh-AV-prB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6zr-5R-YZA" userLabel="First Responder" sceneMemberID="firstResponder"/>
