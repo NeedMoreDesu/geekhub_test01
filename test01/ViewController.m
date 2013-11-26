@@ -85,13 +85,13 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)simpleErrorString:(NSString*)title error:(NSError*)error
+- (void)simpleAlert:(NSString*)title error:(NSString*)message
 {
     dispatch_async(dispatch_get_main_queue(),
                    ^{
                        [[[UIAlertView alloc]
                          initWithTitle:title
-                         message:[error description]
+                         message:message
                          delegate:nil
                          cancelButtonTitle:@"Ok"
                          otherButtonTitles:nil]
@@ -109,53 +109,33 @@
     }
     NSURL *url = [NSURL
                   URLWithString: [textField text]];
-    NSURLRequest *request = [NSURLRequest
-                             requestWithURL: url];
-    [NSURLConnection
-     sendAsynchronousRequest:request
-     queue:[[NSOperationQueue alloc] init]
-     completionHandler:
-     ^(NSURLResponse *response, NSData *data, NSError *error)
-     {
-         if(error)
-         {
-             [self simpleErrorString:@"Connection error" error:error];
-             return;
-         }
-         GDataXMLDocument *doc = [[GDataXMLDocument alloc]
-                                  initWithData:data
-                                  options:0
-                                  error:&error];
-         if (error)
-         {
-             [self simpleErrorString:@"XML-obtaining error" error:error];
-             return;
-         }
-         NSArray *podcastItems = [PodcastItem
-                                  podcastItemsWithXML:doc
-                                  error:error];
-         if (error)
-         {
-             [self simpleErrorString:@"Given url have no podcast items" error:nil];
-             return;
-         }
-         Podcast *podcast = [Podcast
-                             podcastWithXML:doc
-                             error:error];
-         if (error)
-         {
-             [self simpleErrorString:@"Given url have no podcast title" error:nil];
-             return;
-         }
-         dispatch_async(dispatch_get_main_queue(),
-                        ^{
-                            _podcast = podcast;
-                            _podcastItems = podcastItems;
-                            [_tableView reloadData];
-                        });
+    __block id _self = self;
+    id errorHandler = ^(NSString *title, NSString *message)
+    {
+        dispatch_async(dispatch_get_main_queue(),
+                       ^{
+                           [_self simpleAlert:title error:message];
+                       });
+    };
+    [PodcastItem
+     downloadItemsWithURL:url
+     errorHandler:errorHandler
+     successHandler:^(NSArray *podcastItems) {
+         [Podcast
+          downloadWithURL:url
+          errorHandler:errorHandler
+          successHandler:^(Podcast *podcast) {
+              dispatch_async(dispatch_get_main_queue(),
+                             ^{
+                                 _podcast = podcast;
+                                 _podcastItems = podcastItems;
+                                 [_tableView reloadData];
+                             });
+          }];
      }];
-    
+
     [textField resignFirstResponder];
+    
     return YES;
 }
 

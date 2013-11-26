@@ -13,6 +13,8 @@
 
 @property NSString *title;
 
-+ (Podcast*)podcastWithXML:(GDataXMLDocument *)doc error:(NSError*)error;
++ (void)downloadWithURL:(NSURL *)url
+          errorHandler:(void (^) (NSString* title, NSString* message))errorHandler
+        successHandler:(void (^) (Podcast* podcast))successHandler;
 
 @end

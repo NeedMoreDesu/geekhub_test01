@@ -18,6 +18,8 @@
 @property NSString *author;
 @property NSArray *media;
 
-+ (NSArray*)podcastItemsWithXML:(GDataXMLDocument *)doc error:(NSError*)error;
++ (void)downloadItemsWithURL:(NSURL *)url
+               errorHandler:(void (^) (NSString* title, NSString* message))errorHandler
+             successHandler:(void (^) (NSArray* podcastItems))successHandler;
 
 @end
