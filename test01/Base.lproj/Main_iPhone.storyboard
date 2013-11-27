@@ -108,11 +108,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="album_art_image.png" translatesAutoresizingMaskIntoConstraints="NO" id="2tW-Iy-R65">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="album-art-image.png" translatesAutoresizingMaskIntoConstraints="NO" id="2tW-Iy-R65">
                                 <rect key="frame" x="19" y="87" width="282" height="282"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="album_art_base.png" translatesAutoresizingMaskIntoConstraints="NO" id="E86-6T-qzT">
+                            <imageView opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="album-art-base.png" translatesAutoresizingMaskIntoConstraints="NO" id="E86-6T-qzT">
                                 <rect key="frame" x="17" y="85" width="286" height="286"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
@@ -127,7 +127,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gvP-Uo-P5S">
                                 <rect key="frame" x="70" y="406" width="55" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="controls_button_foreground_minus_15.png" backgroundImage="controls_button_background.png">
+                                <state key="normal" image="controls-button-foreground-minus-15.png" backgroundImage="controls-button-background.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -137,7 +137,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vkF-C4-ONQ">
                                 <rect key="frame" x="133" y="406" width="55" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="controls_button_foreground_pause.png" backgroundImage="controls_button_background.png">
+                                <state key="normal" image="controls-button-foreground-pause.png" backgroundImage="controls-button-background.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -147,7 +147,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A3Q-Xk-nIp">
                                 <rect key="frame" x="196" y="406" width="55" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="controls_button_foreground_next.png" backgroundImage="controls_button_background.png">
+                                <state key="normal" image="controls-button-foreground-next.png" backgroundImage="controls-button-background.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -162,7 +162,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="32 CURRENT PART TITLE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="Eky-Y3-KiJ">
-                                <rect key="frame" x="20" y="482.5" width="280" height="25"/>
+                                <rect key="frame" x="20" y="483" width="280" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16.5"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -202,12 +202,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="album_art_base.png" width="286" height="286"/>
-        <image name="album_art_image.png" width="284" height="284"/>
-        <image name="controls_button_background.png" width="55" height="55"/>
-        <image name="controls_button_foreground_minus_15.png" width="24" height="26"/>
-        <image name="controls_button_foreground_next.png" width="22" height="14"/>
-        <image name="controls_button_foreground_pause.png" width="13" height="22"/>
+        <image name="album-art-base.png" width="286" height="286"/>
+        <image name="album-art-image.png" width="284" height="284"/>
+        <image name="controls-button-background.png" width="55" height="55"/>
+        <image name="controls-button-foreground-minus-15.png" width="24" height="26"/>
+        <image name="controls-button-foreground-next.png" width="22" height="14"/>
+        <image name="controls-button-foreground-pause.png" width="13" height="22"/>
     </resources>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

@@ -12,7 +12,11 @@
 @interface Podcast : NSObject
 
 @property NSString *title;
+@property NSArray *items;
 
 + (Podcast*)podcastWithXML:(GDataXMLDocument *)doc error:(NSError*)error;
++ (void)downloadPodcastWithURL:(NSURL*)url
+                  errorHandler:(void (^) (NSString *title, NSString *message))errorHandler
+                successHandler:(void (^) (Podcast *podcast))successHandler;
 
 @end

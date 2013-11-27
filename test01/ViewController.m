@@ -19,7 +19,6 @@
 
 @implementation ViewController
 {
-    NSArray *_podcastItems;
     Podcast *_podcast;
     __weak IBOutlet UITextField *_textField;
     __weak IBOutlet UITableView *_tableView;
@@ -85,13 +84,13 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)simpleErrorString:(NSString*)title error:(NSError*)error
+- (void)simpleAlert:(NSString*)title message:(NSString*)message
 {
     dispatch_async(dispatch_get_main_queue(),
                    ^{
                        [[[UIAlertView alloc]
                          initWithTitle:title
-                         message:[error description]
+                         message:message
                          delegate:nil
                          cancelButtonTitle:@"Ok"
                          otherButtonTitles:nil]
@@ -109,48 +108,15 @@
     }
     NSURL *url = [NSURL
                   URLWithString: [textField text]];
-    NSURLRequest *request = [NSURLRequest
-                             requestWithURL: url];
-    [NSURLConnection
-     sendAsynchronousRequest:request
-     queue:[[NSOperationQueue alloc] init]
-     completionHandler:
-     ^(NSURLResponse *response, NSData *data, NSError *error)
-     {
-         if(error)
-         {
-             [self simpleErrorString:@"Connection error" error:error];
-             return;
-         }
-         GDataXMLDocument *doc = [[GDataXMLDocument alloc]
-                                  initWithData:data
-                                  options:0
-                                  error:&error];
-         if (error)
-         {
-             [self simpleErrorString:@"XML-obtaining error" error:error];
-             return;
-         }
-         NSArray *podcastItems = [PodcastItem
-                                  podcastItemsWithXML:doc
-                                  error:error];
-         if (error)
-         {
-             [self simpleErrorString:@"Given url have no podcast items" error:nil];
-             return;
-         }
-         Podcast *podcast = [Podcast
-                             podcastWithXML:doc
-                             error:error];
-         if (error)
-         {
-             [self simpleErrorString:@"Given url have no podcast title" error:nil];
-             return;
-         }
+    __block id _self = self;
+    [Podcast
+     downloadPodcastWithURL:url
+     errorHandler:^(NSString *title, NSString *message) {
+         [_self simpleAlert:title message:message];
+     } successHandler:^(Podcast *podcast) {
          dispatch_async(dispatch_get_main_queue(),
                         ^{
                             _podcast = podcast;
-                            _podcastItems = podcastItems;
                             [_tableView reloadData];
                         });
      }];
@@ -168,7 +134,7 @@
 /// table
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_podcastItems count];
+    return [_podcast.items count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -184,7 +150,7 @@
     }
     
     NSInteger row = [indexPath row];
-    PodcastItem *podcastItem = [_podcastItems objectAtIndex:row];
+    PodcastItem *podcastItem = [_podcast.items objectAtIndex:row];
     
     [[cell textLabel] setText: [podcastItem title]];
     [[cell detailTextLabel] setText: [podcastItem author]];
@@ -213,7 +179,7 @@
         NSIndexPath *selectedRowIndex = [_tableView indexPathForSelectedRow];
         ViewControllerPlayer *viewControllerPlayer = [segue destinationViewController];
         [viewControllerPlayer
-         setPodcastItem:[_podcastItems
+         setPodcastItem:[_podcast.items
                          objectAtIndex:[selectedRowIndex row]]];
         [viewControllerPlayer
          setPodcast:_podcast];
