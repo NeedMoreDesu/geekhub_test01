@@ -18,7 +18,6 @@
     __weak IBOutlet UILabel *_podcastItemTitle;
     __weak IBOutlet UILabel *_podcastTitle;
     __weak IBOutlet UILabel *_author;
-    int media_idx;
     AVPlayer *_player;
     id _timeObserver;
 }
@@ -44,7 +43,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        media_idx = 0;
+        self.podcastItem.currentMedia = 0;
     }
     return self;
 }
@@ -108,13 +107,19 @@
     [_author
      setText: [[self podcastItem] author]];
     
-    NSURL *currentMediaURL = [[[self podcastItem] media] objectAtIndex:media_idx];
+    NSURL *currentMediaURL = [[[self podcastItem] media]
+                              objectAtIndex:self.podcastItem.currentMedia];
 
     AVURLAsset *asset = [[AVURLAsset alloc]
                          initWithURL:currentMediaURL
                          options:nil];
     AVPlayerItem *item = [[AVPlayerItem alloc] initWithAsset:asset];
     _player = [[AVPlayer alloc] initWithPlayerItem:item];
+    [self setCurrentPlaybackTime:self.podcastItem.secondsForCurrentMedia];
+}
+
+- (void) viewDidAppear:(BOOL)animated
+{
     [_player play];
     
     __block AVPlayer *blockPlayer = _player;
@@ -134,6 +139,10 @@
              double normalizedTime =
              (double) blockPlayer.currentTime.value /
              (double) endTime.value;
+             
+             blockSelf.podcastItem.secondsForCurrentMedia =
+             CMTimeGetSeconds(blockPlayer.currentTime);
+             
              blockSlider.value = normalizedTime;
              blockTime.text = [NSString
                                stringWithFormat:@"%@ / %@",
@@ -142,7 +151,26 @@
          }
      }];
     
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(viewWillEnterBackground)
+     name:UIApplicationWillResignActiveNotification
+     object:nil];
+
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(viewWillLeaveBackground)
+     name:UIApplicationWillEnterForegroundNotification
+     object:nil];
+
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(viewWillBeTerminated)
+     name:UIApplicationWillTerminateNotification
+     object:nil];
+
 	// Do any additional setup after loading the view.
+    [self.podcast saveToDB];
 }
 
 - (IBAction)rewind15Sec:(UIButton *)sender {
@@ -159,11 +187,9 @@
 }
 
 - (IBAction)nextTrack:(id)sender {
-    media_idx++;
-    if(media_idx >= [[_podcastItem media] count])
-        media_idx = 0;
     
-    NSURL *currentMediaURL = [[[self podcastItem] media] objectAtIndex:media_idx];
+    NSURL *currentMediaURL = [[[self podcastItem] media]
+                              objectAtIndex:[self.podcastItem nextMedia]];
     
     AVURLAsset *asset = [[AVURLAsset alloc]
                          initWithURL:currentMediaURL
@@ -207,6 +233,32 @@
 {
     [_player removeTimeObserver:_timeObserver];
     _timeObserver = nil; // jeez. That was hard.
+    [[NSNotificationCenter defaultCenter]
+     removeObserver:self];
+    self.podcast.currentItemIndex = nil;
+    long long podcastId = [self.podcast saveToDB];
+    [self.podcastItem
+     saveToDBWithPodcastID:podcastId];
+}
+
+- (void)viewWillEnterBackground
+{
+//    [_player pause];
+    long long podcastId = [self.podcast saveToDB];
+    [self.podcastItem
+     saveToDBWithPodcastID:podcastId];
+}
+
+- (void)viewWillLeaveBackground
+{
+//    [_player play];
+}
+
+- (void)viewWillBeTerminated
+{
+    long long podcastId = [self.podcast saveToDB];
+    [self.podcastItem
+     saveToDBWithPodcastID:podcastId];
 }
 
 @end

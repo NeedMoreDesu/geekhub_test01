@@ -8,8 +8,6 @@
 
 #import "Reachability.h"
 #import "ViewController.h"
-#import "PodcastItem.h"
-#import "Podcast.h"
 #import "UIImageView+WebCache.h"
 #import "ViewControllerPlayer.h"
 
@@ -19,9 +17,9 @@
 
 @implementation ViewController
 {
-    Podcast *_podcast;
     __weak IBOutlet UITextField *_textField;
     __weak IBOutlet UITableView *_tableView;
+    __weak IBOutlet UINavigationItem *_navigationItem;
     Reachability* _reach;
 }
 
@@ -63,18 +61,37 @@
 
     if(![self networkIsReachable])
         [_reach unreachableBlock](_reach);
+    
+    self.podcast = [Podcast podcastFromDB];
+    if(self.podcast)
+    {
+        [_textField setText:self.podcast.urlString];
+        [_navigationItem setTitle:self.podcast.title];
+        [_tableView reloadData];
+        if (self.podcast.currentItemIndex)
+        {
+            ViewControllerPlayer *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"player"];
+            controller.podcast = self.podcast;
+            controller.podcastItem = self.podcast.currentItem;
+
+            [self.navigationController
+             pushViewController:controller
+             animated:NO];
+        }
+    }
+    
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
+//    [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
+//    [self.navigationController setNavigationBarHidden:NO animated:animated];
     [super viewWillAppear:animated];
 }
 
@@ -106,6 +123,7 @@
         [_reach unreachableBlock](_reach);
         return NO;
     }
+    self.podcast.urlString = [textField text];
     NSURL *url = [NSURL
                   URLWithString: [textField text]];
     __block id _self = self;
@@ -117,6 +135,8 @@
          dispatch_async(dispatch_get_main_queue(),
                         ^{
                             _podcast = podcast;
+                            NSLog(@"Added to DB with id = %lld", [_podcast saveToDB]);
+                            [_navigationItem setTitle:podcast.title];
                             [_tableView reloadData];
                         });
      }];
@@ -178,9 +198,9 @@
     {
         NSIndexPath *selectedRowIndex = [_tableView indexPathForSelectedRow];
         ViewControllerPlayer *viewControllerPlayer = [segue destinationViewController];
+        self.podcast.currentItemIndex = [NSNumber numberWithInt:[selectedRowIndex row]];
         [viewControllerPlayer
-         setPodcastItem:[_podcast.items
-                         objectAtIndex:[selectedRowIndex row]]];
+         setPodcastItem:self.podcast.currentItem];
         [viewControllerPlayer
          setPodcast:_podcast];
     }

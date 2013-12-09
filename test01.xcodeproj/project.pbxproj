@@ -62,7 +62,10 @@
 		D7872AE3181563F500998125 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7872AC2181563F500998125 /* UIKit.framework */; };
 		D7872AEB181563F500998125 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D7872AE9181563F500998125 /* InfoPlist.strings */; };
 		D7872AED181563F500998125 /* test01Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = D7872AEC181563F500998125 /* test01Tests.m */; };
+		D7880C4B1855E2E400806C90 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D7880C4A1855E2E400806C90 /* libsqlite3.dylib */; };
+		D7880C4D1855FBDC00806C90 /* db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = D7880C4C1855F83700806C90 /* db.sqlite */; };
 		D78F4336182D5A990009C1B0 /* NSArray+Func.m in Sources */ = {isa = PBXBuildFile; fileRef = D78F4335182D5A990009C1B0 /* NSArray+Func.m */; };
+		F4177F187E624F0893F9E3C6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC6910AACA146528745EE31 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +79,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8DC6910AACA146528745EE31 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B69CC4CC3819425AA65DFC37 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		D72089F2184029D000282A19 /* Podcast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Podcast.h; sourceTree = "<group>"; };
 		D72089F3184029D000282A19 /* Podcast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Podcast.m; sourceTree = "<group>"; };
 		D77AEE85182417DC00F21F54 /* PodcastItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PodcastItem.h; sourceTree = "<group>"; };
@@ -156,6 +161,8 @@
 		D7872AE8181563F500998125 /* test01Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "test01Tests-Info.plist"; sourceTree = "<group>"; };
 		D7872AEA181563F500998125 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D7872AEC181563F500998125 /* test01Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = test01Tests.m; sourceTree = "<group>"; };
+		D7880C4A1855E2E400806C90 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		D7880C4C1855F83700806C90 /* db.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = db.sqlite; sourceTree = "<group>"; };
 		D78F4334182D5A990009C1B0 /* NSArray+Func.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Func.h"; sourceTree = "<group>"; };
 		D78F4335182D5A990009C1B0 /* NSArray+Func.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Func.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -165,12 +172,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7880C4B1855E2E400806C90 /* libsqlite3.dylib in Frameworks */,
 				D7824EC7184266A6006DBF60 /* AVFoundation.framework in Frameworks */,
 				D77AEE9F18241E1A00F21F54 /* SystemConfiguration.framework in Frameworks */,
 				D77AEE9818241D5900F21F54 /* ImageIO.framework in Frameworks */,
 				D7872AC1181563F500998125 /* CoreGraphics.framework in Frameworks */,
 				D7872AC3181563F500998125 /* UIKit.framework in Frameworks */,
 				D7872ABF181563F500998125 /* Foundation.framework in Frameworks */,
+				F4177F187E624F0893F9E3C6 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +301,7 @@
 				D7872AE6181563F500998125 /* test01Tests */,
 				D7872ABD181563F400998125 /* Frameworks */,
 				D7872ABC181563F400998125 /* Products */,
+				B69CC4CC3819425AA65DFC37 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -307,6 +317,7 @@
 		D7872ABD181563F400998125 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D7880C4A1855E2E400806C90 /* libsqlite3.dylib */,
 				D7824EC6184266A6006DBF60 /* AVFoundation.framework */,
 				D77AEE9E18241E1A00F21F54 /* SystemConfiguration.framework */,
 				D77AEE9718241D5900F21F54 /* ImageIO.framework */,
@@ -314,6 +325,7 @@
 				D7872AC0181563F500998125 /* CoreGraphics.framework */,
 				D7872AC2181563F500998125 /* UIKit.framework */,
 				D7872AE0181563F500998125 /* XCTest.framework */,
+				8DC6910AACA146528745EE31 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -336,6 +348,7 @@
 		D7872AC5181563F500998125 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D7880C4C1855F83700806C90 /* db.sqlite */,
 				D7872AC6181563F500998125 /* test01-Info.plist */,
 				D7872AC7181563F500998125 /* InfoPlist.strings */,
 				D7872ACA181563F500998125 /* main.m */,
@@ -411,9 +424,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D7872AF0181563F500998125 /* Build configuration list for PBXNativeTarget "test01" */;
 			buildPhases = (
+				EE09940B89A8435C8BB7A601 /* Check Pods Manifest.lock */,
 				D7872AB7181563F400998125 /* Sources */,
 				D7872AB8181563F400998125 /* Frameworks */,
 				D7872AB9181563F400998125 /* Resources */,
+				50A737852BD043CE87665211 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -480,6 +495,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7880C4D1855FBDC00806C90 /* db.sqlite in Resources */,
 				D781363D184618A10012AC17 /* controls-button-foreground-minus-15.png in Resources */,
 				D781363B184618A10012AC17 /* controls-button-foreground-pause.png in Resources */,
 				D7813632184618A10012AC17 /* album-seeker-progress@2x.png in Resources */,
@@ -514,6 +530,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		50A737852BD043CE87665211 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EE09940B89A8435C8BB7A601 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D7872AB7181563F400998125 /* Sources */ = {
@@ -676,6 +725,7 @@
 		};
 		D7872AF1181563F500998125 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B69CC4CC3819425AA65DFC37 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -704,6 +754,7 @@
 		};
 		D7872AF2181563F500998125 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B69CC4CC3819425AA65DFC37 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PodcastItem.h"
+#import "Podcast.h"
 
 @interface ViewController : UIViewController
 <UITableViewDataSource, UITableViewDelegate,
 UITextFieldDelegate>
+
+@property (nonatomic, strong) Podcast *podcast;
 
 @end
