@@ -1,21 +1,19 @@
 //
-//  Podcast.m
+//  Media.m
 //  test01
 //
 //  Created by dev on 12/24/13.
 //  Copyright (c) 2013 dev. All rights reserved.
 //
 
-#import "Podcast.h"
+#import "Media.h"
 #import "PodcastItem.h"
 
 
-@implementation Podcast
+@implementation Media
 
-@dynamic title;
+@dynamic seconds;
 @dynamic urlString;
-@dynamic date;
-@dynamic currentItem;
-@dynamic items;
+@dynamic podcastItem;
 
 @end

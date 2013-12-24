@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D72089F4184029D000282A19 /* Podcast.m in Sources */ = {isa = PBXBuildFile; fileRef = D72089F3184029D000282A19 /* Podcast.m */; };
-		D77AEE87182417DC00F21F54 /* PodcastItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D77AEE86182417DC00F21F54 /* PodcastItem.m */; };
+		D76E555D1869DC7900A96ECC /* Media+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = D76E555C1869DC7900A96ECC /* Media+Custom.m */; };
+		D76E55601869DD4500A96ECC /* Podcast+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = D76E555F1869DD4500A96ECC /* Podcast+Custom.m */; };
+		D76E55631869DD5400A96ECC /* PodcastItem+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = D76E55621869DD5400A96ECC /* PodcastItem+Custom.m */; };
 		D77AEE9818241D5900F21F54 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D77AEE9718241D5900F21F54 /* ImageIO.framework */; };
 		D77AEE9D18241DEA00F21F54 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D77AEE9B18241DEA00F21F54 /* Reachability.m */; };
 		D77AEE9F18241E1A00F21F54 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D77AEE9E18241E1A00F21F54 /* SystemConfiguration.framework */; };
@@ -65,6 +66,13 @@
 		D7880C4B1855E2E400806C90 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D7880C4A1855E2E400806C90 /* libsqlite3.dylib */; };
 		D7880C4D1855FBDC00806C90 /* db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = D7880C4C1855F83700806C90 /* db.sqlite */; };
 		D78F4336182D5A990009C1B0 /* NSArray+Func.m in Sources */ = {isa = PBXBuildFile; fileRef = D78F4335182D5A990009C1B0 /* NSArray+Func.m */; };
+		D7DF8EBE1868AE210004FF2A /* NSManagedObject+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = D7DF8EBD1868AE210004FF2A /* NSManagedObject+Helpers.m */; };
+		D7DF8EC11868AF670004FF2A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7DF8EC01868AF670004FF2A /* CoreData.framework */; };
+		D7DF8EC41868B5CC0004FF2A /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D7DF8EC21868B5CC0004FF2A /* Model.xcdatamodeld */; };
+		D7DF8ECA1868BFE60004FF2A /* NSManagedObjectContext+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = D7DF8EC91868BFE60004FF2A /* NSManagedObjectContext+Helpers.m */; };
+		D7DF8ECD1869D1250004FF2A /* Podcast.m in Sources */ = {isa = PBXBuildFile; fileRef = D7DF8ECC1869D1250004FF2A /* Podcast.m */; };
+		D7DF8ED01869D1250004FF2A /* PodcastItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D7DF8ECF1869D1250004FF2A /* PodcastItem.m */; };
+		D7DF8ED31869D1250004FF2A /* Media.m in Sources */ = {isa = PBXBuildFile; fileRef = D7DF8ED21869D1250004FF2A /* Media.m */; };
 		F4177F187E624F0893F9E3C6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC6910AACA146528745EE31 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -81,10 +89,12 @@
 /* Begin PBXFileReference section */
 		8DC6910AACA146528745EE31 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B69CC4CC3819425AA65DFC37 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
-		D72089F2184029D000282A19 /* Podcast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Podcast.h; sourceTree = "<group>"; };
-		D72089F3184029D000282A19 /* Podcast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Podcast.m; sourceTree = "<group>"; };
-		D77AEE85182417DC00F21F54 /* PodcastItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PodcastItem.h; sourceTree = "<group>"; };
-		D77AEE86182417DC00F21F54 /* PodcastItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PodcastItem.m; sourceTree = "<group>"; };
+		D76E555B1869DC7900A96ECC /* Media+Custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Media+Custom.h"; sourceTree = "<group>"; };
+		D76E555C1869DC7900A96ECC /* Media+Custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Media+Custom.m"; sourceTree = "<group>"; };
+		D76E555E1869DD4500A96ECC /* Podcast+Custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Podcast+Custom.h"; sourceTree = "<group>"; };
+		D76E555F1869DD4500A96ECC /* Podcast+Custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Podcast+Custom.m"; sourceTree = "<group>"; };
+		D76E55611869DD5400A96ECC /* PodcastItem+Custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PodcastItem+Custom.h"; sourceTree = "<group>"; };
+		D76E55621869DD5400A96ECC /* PodcastItem+Custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PodcastItem+Custom.m"; sourceTree = "<group>"; };
 		D77AEE9718241D5900F21F54 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		D77AEE9B18241DEA00F21F54 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		D77AEE9C18241DEA00F21F54 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -165,6 +175,18 @@
 		D7880C4C1855F83700806C90 /* db.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = db.sqlite; sourceTree = "<group>"; };
 		D78F4334182D5A990009C1B0 /* NSArray+Func.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Func.h"; sourceTree = "<group>"; };
 		D78F4335182D5A990009C1B0 /* NSArray+Func.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Func.m"; sourceTree = "<group>"; };
+		D7DF8EBD1868AE210004FF2A /* NSManagedObject+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+Helpers.m"; sourceTree = "<group>"; };
+		D7DF8EBF1868AE2F0004FF2A /* NSManagedObject+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+Helpers.h"; sourceTree = "<group>"; };
+		D7DF8EC01868AF670004FF2A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		D7DF8EC31868B5CC0004FF2A /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		D7DF8EC81868BFE60004FF2A /* NSManagedObjectContext+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+Helpers.h"; sourceTree = "<group>"; };
+		D7DF8EC91868BFE60004FF2A /* NSManagedObjectContext+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+Helpers.m"; sourceTree = "<group>"; };
+		D7DF8ECB1869D1250004FF2A /* Podcast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Podcast.h; path = managedObjects/Podcast.h; sourceTree = "<group>"; };
+		D7DF8ECC1869D1250004FF2A /* Podcast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Podcast.m; path = managedObjects/Podcast.m; sourceTree = "<group>"; };
+		D7DF8ECE1869D1250004FF2A /* PodcastItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PodcastItem.h; path = managedObjects/PodcastItem.h; sourceTree = "<group>"; };
+		D7DF8ECF1869D1250004FF2A /* PodcastItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PodcastItem.m; path = managedObjects/PodcastItem.m; sourceTree = "<group>"; };
+		D7DF8ED11869D1250004FF2A /* Media.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Media.h; path = managedObjects/Media.h; sourceTree = "<group>"; };
+		D7DF8ED21869D1250004FF2A /* Media.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Media.m; path = managedObjects/Media.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +194,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7DF8EC11868AF670004FF2A /* CoreData.framework in Frameworks */,
 				D7880C4B1855E2E400806C90 /* libsqlite3.dylib in Frameworks */,
 				D7824EC7184266A6006DBF60 /* AVFoundation.framework in Frameworks */,
 				D77AEE9F18241E1A00F21F54 /* SystemConfiguration.framework in Frameworks */,
@@ -196,13 +219,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D76E55641869DD6200A96ECC /* Customs */ = {
+			isa = PBXGroup;
+			children = (
+				D76E555B1869DC7900A96ECC /* Media+Custom.h */,
+				D76E555C1869DC7900A96ECC /* Media+Custom.m */,
+				D76E55611869DD5400A96ECC /* PodcastItem+Custom.h */,
+				D76E55621869DD5400A96ECC /* PodcastItem+Custom.m */,
+				D76E555E1869DD4500A96ECC /* Podcast+Custom.h */,
+				D76E555F1869DD4500A96ECC /* Podcast+Custom.m */,
+			);
+			name = Customs;
+			sourceTree = "<group>";
+		};
 		D77AEE811824178100F21F54 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				D77AEE85182417DC00F21F54 /* PodcastItem.h */,
-				D77AEE86182417DC00F21F54 /* PodcastItem.m */,
-				D72089F2184029D000282A19 /* Podcast.h */,
-				D72089F3184029D000282A19 /* Podcast.m */,
+				D76E55641869DD6200A96ECC /* Customs */,
+				D7DF8ED41869D1330004FF2A /* ManagedObjects */,
+				D7DF8EC21868B5CC0004FF2A /* Model.xcdatamodeld */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -317,6 +352,7 @@
 		D7872ABD181563F400998125 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D7DF8EC01868AF670004FF2A /* CoreData.framework */,
 				D7880C4A1855E2E400806C90 /* libsqlite3.dylib */,
 				D7824EC6184266A6006DBF60 /* AVFoundation.framework */,
 				D77AEE9E18241E1A00F21F54 /* SystemConfiguration.framework */,
@@ -408,9 +444,26 @@
 			name = img;
 			sourceTree = "<group>";
 		};
+		D7DF8ED41869D1330004FF2A /* ManagedObjects */ = {
+			isa = PBXGroup;
+			children = (
+				D7DF8ED11869D1250004FF2A /* Media.h */,
+				D7DF8ED21869D1250004FF2A /* Media.m */,
+				D7DF8ECE1869D1250004FF2A /* PodcastItem.h */,
+				D7DF8ECF1869D1250004FF2A /* PodcastItem.m */,
+				D7DF8ECB1869D1250004FF2A /* Podcast.h */,
+				D7DF8ECC1869D1250004FF2A /* Podcast.m */,
+			);
+			name = ManagedObjects;
+			sourceTree = "<group>";
+		};
 		D7EBBA4A182D709D00BC52D3 /* Additional */ = {
 			isa = PBXGroup;
 			children = (
+				D7DF8EC81868BFE60004FF2A /* NSManagedObjectContext+Helpers.h */,
+				D7DF8EC91868BFE60004FF2A /* NSManagedObjectContext+Helpers.m */,
+				D7DF8EBF1868AE2F0004FF2A /* NSManagedObject+Helpers.h */,
+				D7DF8EBD1868AE210004FF2A /* NSManagedObject+Helpers.m */,
 				D78F4334182D5A990009C1B0 /* NSArray+Func.h */,
 				D78F4335182D5A990009C1B0 /* NSArray+Func.m */,
 			);
@@ -569,19 +622,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D77AEE87182417DC00F21F54 /* PodcastItem.m in Sources */,
 				D77AEEEB1824773B00F21F54 /* SDWebImageManager.m in Sources */,
+				D7DF8ED31869D1250004FF2A /* Media.m in Sources */,
 				D77AEEF11824773B00F21F54 /* UIImageView+WebCache.m in Sources */,
 				D78F4336182D5A990009C1B0 /* NSArray+Func.m in Sources */,
+				D7DF8ECA1868BFE60004FF2A /* NSManagedObjectContext+Helpers.m in Sources */,
 				D77AEEE61824773B00F21F54 /* SDImageCache.m in Sources */,
 				D77AEEEA1824773B00F21F54 /* SDWebImageDownloaderOperation.m in Sources */,
 				D7872AD8181563F500998125 /* ViewController.m in Sources */,
 				D77AEEED1824773B00F21F54 /* UIButton+WebCache.m in Sources */,
 				D77B3262181D77EF00C4720B /* GDataXMLNode.m in Sources */,
 				D77AEEEC1824773B00F21F54 /* SDWebImagePrefetcher.m in Sources */,
+				D7DF8EBE1868AE210004FF2A /* NSManagedObject+Helpers.m in Sources */,
+				D7DF8ECD1869D1250004FF2A /* Podcast.m in Sources */,
+				D7DF8ED01869D1250004FF2A /* PodcastItem.m in Sources */,
 				D77AEEE91824773B00F21F54 /* SDWebImageDownloader.m in Sources */,
+				D76E555D1869DC7900A96ECC /* Media+Custom.m in Sources */,
+				D76E55631869DD5400A96ECC /* PodcastItem+Custom.m in Sources */,
+				D76E55601869DD4500A96ECC /* Podcast+Custom.m in Sources */,
 				D77AEEE51824773B00F21F54 /* NSData+GIF.m in Sources */,
-				D72089F4184029D000282A19 /* Podcast.m in Sources */,
 				D77AEEF01824773B00F21F54 /* UIImage+WebP.m in Sources */,
 				D77AEEE81824773B00F21F54 /* SDWebImageDecoder.m in Sources */,
 				D7872ACF181563F500998125 /* AppDelegate.m in Sources */,
@@ -589,6 +648,7 @@
 				D77AEEE71824773B00F21F54 /* SDWebImageCompat.m in Sources */,
 				D784070C183AD1ED0095D26C /* ViewControllerPlayer.m in Sources */,
 				D77AEE9D18241DEA00F21F54 /* Reachability.m in Sources */,
+				D7DF8EC41868B5CC0004FF2A /* Model.xcdatamodeld in Sources */,
 				D7872ACB181563F500998125 /* main.m in Sources */,
 				D77AEEEF1824773B00F21F54 /* UIImage+MultiFormat.m in Sources */,
 				D77AEEEE1824773B00F21F54 /* UIImage+GIF.m in Sources */,
@@ -854,6 +914,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D7DF8EC21868B5CC0004FF2A /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D7DF8EC31868B5CC0004FF2A /* Model.xcdatamodel */,
+			);
+			currentVersion = D7DF8EC31868B5CC0004FF2A /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = D7872AB3181563F400998125 /* Project object */;
 }

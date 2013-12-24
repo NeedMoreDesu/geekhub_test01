@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Podcast.h"
-#import "PodcastItem.h"
+#import "PodcastItem+Custom.h"
+#import "Podcast+Custom.h"
+#import "Media+Custom.h"
 
 @interface ViewControllerPlayer : UIViewController
 

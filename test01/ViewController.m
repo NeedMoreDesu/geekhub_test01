@@ -58,17 +58,24 @@
              show];
         });
     };
-
+    
     if(![self networkIsReachable])
         [_reach unreachableBlock](_reach);
     
-    self.podcast = [Podcast podcastFromDB];
-    if(self.podcast)
+    //    self.podcast = [Podcast podcastFromDB];
+    NSArray *firstOne = [[NSManagedObjectContext fromAppDelegate]
+                         fetchObjectsForEntityName:@"Podcast"
+                         sortDescriptors:nil
+                         limit:1
+                         predicate:nil];
+    
+    if(firstOne.count > 0)
     {
+        self.podcast = [firstOne objectAtIndex:0];
         [_textField setText:self.podcast.urlString];
         [_navigationItem setTitle:self.podcast.title];
         [_tableView reloadData];
-        if (self.podcast.currentItemIndex)
+        if (self.podcast.currentItem)
         {
             ViewControllerPlayer *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"player"];
             controller.podcast = self.podcast;
@@ -135,9 +142,12 @@
          dispatch_async(dispatch_get_main_queue(),
                         ^{
                             _podcast = podcast;
-                            NSLog(@"Added to DB with id = %lld", [_podcast saveToDB]);
                             [_navigationItem setTitle:podcast.title];
                             [_tableView reloadData];
+                            NSError *error = nil;
+                            [[NSManagedObjectContext fromAppDelegate] save:&error];
+                            if (error)
+                                NSLog(@"Error during save");
                         });
      }];
     
@@ -170,7 +180,7 @@
     }
     
     NSInteger row = [indexPath row];
-    PodcastItem *podcastItem = [_podcast.items objectAtIndex:row];
+    PodcastItem *podcastItem = [self.podcast.items objectAtIndex:row];
     
     [[cell textLabel] setText: [podcastItem title]];
     [[cell detailTextLabel] setText: [podcastItem author]];
@@ -194,16 +204,16 @@
 ///segues
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if([[segue identifier] isEqualToString:@"PodcastItemShow"])
-    {
-        NSIndexPath *selectedRowIndex = [_tableView indexPathForSelectedRow];
-        ViewControllerPlayer *viewControllerPlayer = [segue destinationViewController];
-        self.podcast.currentItemIndex = [NSNumber numberWithInt:[selectedRowIndex row]];
-        [viewControllerPlayer
-         setPodcastItem:self.podcast.currentItem];
-        [viewControllerPlayer
-         setPodcast:_podcast];
-    }
+//    if([[segue identifier] isEqualToString:@"PodcastItemShow"])
+//    {
+//        NSIndexPath *selectedRowIndex = [_tableView indexPathForSelectedRow];
+//        ViewControllerPlayer *viewControllerPlayer = [segue destinationViewController];
+//        self.podcast.currentItemIndex = [NSNumber numberWithInt:[selectedRowIndex row]];
+//        [viewControllerPlayer
+//         setPodcastItem:self.podcast.currentItem];
+//        [viewControllerPlayer
+//         setPodcast:_podcast];
+//    }
 }
 
 @end

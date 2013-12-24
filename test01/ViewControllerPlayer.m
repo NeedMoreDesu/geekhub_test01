@@ -43,7 +43,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.podcastItem.currentMedia = 0;
+//        self.podcastItem.currentMedia = 0;
     }
     return self;
 }
@@ -95,8 +95,8 @@
      setThumbImage:thumbImage
      forState:UIControlStateNormal];
     
-    [_picture
-     setImageWithURL: [[self podcastItem] imageURL]];
+//    [_picture
+//     setImageWithURL: [[self podcastItem] imageURL]];
     [[_picture layer] setCornerRadius:5.0];
     [[_picture layer] setMasksToBounds:YES];
     
@@ -104,18 +104,18 @@
      setText: [[self podcastItem] title]];
     [_podcastTitle
      setText: [[self podcast] title]];
-    [_author
-     setText: [[self podcastItem] author]];
+//    [_author
+//     setText: [[self podcastItem] author]];
     
-    NSURL *currentMediaURL = [[[self podcastItem] media]
-                              objectAtIndex:self.podcastItem.currentMedia];
+//    NSURL *currentMediaURL = [[[self podcastItem] media]
+//                              objectAtIndex:self.podcastItem.currentMedia];
 
-    AVURLAsset *asset = [[AVURLAsset alloc]
-                         initWithURL:currentMediaURL
-                         options:nil];
-    AVPlayerItem *item = [[AVPlayerItem alloc] initWithAsset:asset];
-    _player = [[AVPlayer alloc] initWithPlayerItem:item];
-    [self setCurrentPlaybackTime:self.podcastItem.secondsForCurrentMedia];
+//    AVURLAsset *asset = [[AVURLAsset alloc]
+//                         initWithURL:currentMediaURL
+//                         options:nil];
+//    AVPlayerItem *item = [[AVPlayerItem alloc] initWithAsset:asset];
+//    _player = [[AVPlayer alloc] initWithPlayerItem:item];
+//    [self setCurrentPlaybackTime:self.podcastItem.secondsForCurrentMedia];
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -140,8 +140,8 @@
              (double) blockPlayer.currentTime.value /
              (double) endTime.value;
              
-             blockSelf.podcastItem.secondsForCurrentMedia =
-             CMTimeGetSeconds(blockPlayer.currentTime);
+             blockSelf.podcastItem.currentMedia.seconds =
+             [NSNumber numberWithFloat: CMTimeGetSeconds(blockPlayer.currentTime)];
              
              blockSlider.value = normalizedTime;
              blockTime.text = [NSString
@@ -170,7 +170,7 @@
      object:nil];
 
 	// Do any additional setup after loading the view.
-    [self.podcast saveToDB];
+//    [self.podcast saveToDB];
 }
 
 - (IBAction)rewind15Sec:(UIButton *)sender {
@@ -188,14 +188,14 @@
 
 - (IBAction)nextTrack:(id)sender {
     
-    NSURL *currentMediaURL = [[[self podcastItem] media]
-                              objectAtIndex:[self.podcastItem nextMedia]];
+//    NSURL *currentMediaURL = [[[self podcastItem] media]
+//                              objectAtIndex:[self.podcastItem nextMedia]];
     
-    AVURLAsset *asset = [[AVURLAsset alloc]
-                         initWithURL:currentMediaURL
-                         options:nil];
-    AVPlayerItem *item = [[AVPlayerItem alloc] initWithAsset:asset];
-    [_player replaceCurrentItemWithPlayerItem:item];
+//    AVURLAsset *asset = [[AVURLAsset alloc]
+//                         initWithURL:currentMediaURL
+//                         options:nil];
+//    AVPlayerItem *item = [[AVPlayerItem alloc] initWithAsset:asset];
+//    [_player replaceCurrentItemWithPlayerItem:item];
 }
 
 - (IBAction)sliderChanging:(UISlider *)sender {
@@ -235,30 +235,28 @@
     _timeObserver = nil; // jeez. That was hard.
     [[NSNotificationCenter defaultCenter]
      removeObserver:self];
-    self.podcast.currentItemIndex = nil;
-    long long podcastId = [self.podcast saveToDB];
-    [self.podcastItem
-     saveToDBWithPodcastID:podcastId];
+//    self.podcast.currentItemIndex = nil;
+//    long long podcastId = [self.podcast saveToDB];
+//    [self.podcastItem
+//     saveToDBWithPodcastID:podcastId];
 }
 
 - (void)viewWillEnterBackground
 {
-//    [_player pause];
-    long long podcastId = [self.podcast saveToDB];
-    [self.podcastItem
-     saveToDBWithPodcastID:podcastId];
+//    long long podcastId = [self.podcast saveToDB];
+//    [self.podcastItem
+//     saveToDBWithPodcastID:podcastId];
 }
 
 - (void)viewWillLeaveBackground
 {
-//    [_player play];
 }
 
 - (void)viewWillBeTerminated
 {
-    long long podcastId = [self.podcast saveToDB];
-    [self.podcastItem
-     saveToDBWithPodcastID:podcastId];
+//    long long podcastId = [self.podcast saveToDB];
+//    [self.podcastItem
+//     saveToDBWithPodcastID:podcastId];
 }
 
 @end

@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PodcastItem.h"
-#import "Podcast.h"
+#import "PodcastItem+Custom.h"
+#import "Podcast+Custom.h"
+#import "Media+Custom.h"
+#import "NSManagedObjectContext+Helpers.h"
 
 @interface ViewController : UIViewController
 <UITableViewDataSource, UITableViewDelegate,

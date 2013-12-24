@@ -2,33 +2,34 @@
 //  Podcast.h
 //  test01
 //
-//  Created by dev on 11/23/13.
+//  Created by dev on 12/24/13.
 //  Copyright (c) 2013 dev. All rights reserved.
 //
 
-#import "GDataXMLNode.h"
 #import <Foundation/Foundation.h>
-#import "PodcastItem.h"
-#import <FMDatabase.h>
+#import <CoreData/CoreData.h>
 
-@interface Podcast : NSObject
+@class PodcastItem;
 
-@property NSString *title;
-@property NSArray *items;
-@property NSString *urlString;
-@property NSNumber* currentItemIndex;
+@interface Podcast : NSManagedObject
 
-+ (Podcast*)podcastWithXML:(GDataXMLDocument *)doc
-                       url:(NSURL*)url
-                     error:(NSError*)error;
-+ (void)downloadPodcastWithURL:(NSURL*)url
-                  errorHandler:(void (^) (NSString *title, NSString *message))errorHandler
-                successHandler:(void (^) (Podcast *podcast))successHandler;
+@property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) NSString * urlString;
+@property (nonatomic, retain) NSDate * date;
+@property (nonatomic, retain) PodcastItem *currentItem;
+@property (nonatomic, retain) NSOrderedSet *items;
+@end
 
-- (PodcastItem*) currentItem;
+@interface Podcast (CoreDataGeneratedAccessors)
 
-+ (FMDatabase*) getDatabeseCreate;
-+ (Podcast*) podcastFromDB;
-- (long long) saveToDB;
-
+- (void)insertObject:(PodcastItem *)value inItemsAtIndex:(NSUInteger)idx;
+- (void)removeObjectFromItemsAtIndex:(NSUInteger)idx;
+- (void)insertItems:(NSArray *)value atIndexes:(NSIndexSet *)indexes;
+- (void)removeItemsAtIndexes:(NSIndexSet *)indexes;
+- (void)replaceObjectInItemsAtIndex:(NSUInteger)idx withObject:(PodcastItem *)value;
+- (void)replaceItemsAtIndexes:(NSIndexSet *)indexes withItems:(NSArray *)values;
+- (void)addItemsObject:(PodcastItem *)value;
+- (void)removeItemsObject:(PodcastItem *)value;
+- (void)addItems:(NSOrderedSet *)values;
+- (void)removeItems:(NSOrderedSet *)values;
 @end

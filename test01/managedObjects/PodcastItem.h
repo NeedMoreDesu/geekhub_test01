@@ -14,10 +14,10 @@
 @interface PodcastItem : NSManagedObject
 
 @property (nonatomic, retain) NSString * author;
-@property (nonatomic, retain) NSNumber * currentMediaIndex;
 @property (nonatomic, retain) NSDate * date;
 @property (nonatomic, retain) NSString * imageUrlString;
 @property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) NSNumber * currentMedia;
 @property (nonatomic, retain) NSSet *media;
 @property (nonatomic, retain) Podcast *podcast;
 @property (nonatomic, retain) Podcast *podcastWithMeAsCurrent;

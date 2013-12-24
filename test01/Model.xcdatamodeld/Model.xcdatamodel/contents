@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="12F45" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Media" representedClassName="Media" syncable="YES">
+        <attribute name="seconds" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
+        <attribute name="urlString" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="podcastItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PodcastItem" inverseName="media" inverseEntity="PodcastItem" syncable="YES"/>
+    </entity>
+    <entity name="Podcast" representedClassName="Podcast" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="urlString" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="currentItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PodcastItem" inverseName="podcastWithMeAsCurrent" inverseEntity="PodcastItem" syncable="YES"/>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="PodcastItem" inverseName="podcast" inverseEntity="PodcastItem" syncable="YES"/>
+    </entity>
+    <entity name="PodcastItem" representedClassName="PodcastItem" syncable="YES">
+        <attribute name="author" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="currentMediaIndex" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="imageUrlString" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="media" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Media" inverseName="podcastItem" inverseEntity="Media" syncable="YES"/>
+        <relationship name="podcast" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Podcast" inverseName="items" inverseEntity="Podcast" syncable="YES"/>
+        <relationship name="podcastWithMeAsCurrent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Podcast" inverseName="currentItem" inverseEntity="Podcast" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Media" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Podcast" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="PodcastItem" positionX="0" positionY="0" width="0" height="0"/>
+    </elements>
+</model>

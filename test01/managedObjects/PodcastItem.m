@@ -14,10 +14,10 @@
 @implementation PodcastItem
 
 @dynamic author;
-@dynamic currentMediaIndex;
 @dynamic date;
 @dynamic imageUrlString;
 @dynamic title;
+@dynamic currentMedia;
 @dynamic media;
 @dynamic podcast;
 @dynamic podcastWithMeAsCurrent;

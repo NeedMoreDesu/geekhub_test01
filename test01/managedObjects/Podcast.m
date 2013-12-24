@@ -14,7 +14,6 @@
 
 @dynamic title;
 @dynamic urlString;
-@dynamic date;
 @dynamic currentItem;
 @dynamic items;
 
