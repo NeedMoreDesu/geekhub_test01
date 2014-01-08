@@ -10,6 +10,7 @@
 		D76E555D1869DC7900A96ECC /* Media+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = D76E555C1869DC7900A96ECC /* Media+Custom.m */; };
 		D76E55601869DD4500A96ECC /* Podcast+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = D76E555F1869DD4500A96ECC /* Podcast+Custom.m */; };
 		D76E55631869DD5400A96ECC /* PodcastItem+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = D76E55621869DD5400A96ECC /* PodcastItem+Custom.m */; };
+		D76E5579186A204C00A96ECC /* CoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = D76E5578186A204C00A96ECC /* CoreData.m */; };
 		D77AEE9818241D5900F21F54 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D77AEE9718241D5900F21F54 /* ImageIO.framework */; };
 		D77AEE9D18241DEA00F21F54 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D77AEE9B18241DEA00F21F54 /* Reachability.m */; };
 		D77AEE9F18241E1A00F21F54 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D77AEE9E18241E1A00F21F54 /* SystemConfiguration.framework */; };
@@ -95,6 +96,8 @@
 		D76E555F1869DD4500A96ECC /* Podcast+Custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Podcast+Custom.m"; sourceTree = "<group>"; };
 		D76E55611869DD5400A96ECC /* PodcastItem+Custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PodcastItem+Custom.h"; sourceTree = "<group>"; };
 		D76E55621869DD5400A96ECC /* PodcastItem+Custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PodcastItem+Custom.m"; sourceTree = "<group>"; };
+		D76E5577186A204C00A96ECC /* CoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreData.h; sourceTree = "<group>"; };
+		D76E5578186A204C00A96ECC /* CoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreData.m; sourceTree = "<group>"; };
 		D77AEE9718241D5900F21F54 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		D77AEE9B18241DEA00F21F54 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		D77AEE9C18241DEA00F21F54 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -316,6 +319,8 @@
 				D7872AD7181563F500998125 /* ViewController.m */,
 				D784070A183AD1ED0095D26C /* ViewControllerPlayer.h */,
 				D784070B183AD1ED0095D26C /* ViewControllerPlayer.m */,
+				D76E5577186A204C00A96ECC /* CoreData.h */,
+				D76E5578186A204C00A96ECC /* CoreData.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -642,6 +647,7 @@
 				D76E55601869DD4500A96ECC /* Podcast+Custom.m in Sources */,
 				D77AEEE51824773B00F21F54 /* NSData+GIF.m in Sources */,
 				D77AEEF01824773B00F21F54 /* UIImage+WebP.m in Sources */,
+				D76E5579186A204C00A96ECC /* CoreData.m in Sources */,
 				D77AEEE81824773B00F21F54 /* SDWebImageDecoder.m in Sources */,
 				D7872ACF181563F500998125 /* AppDelegate.m in Sources */,
 				D77AEEE41824773B00F21F54 /* MKAnnotationView+WebCache.m in Sources */,

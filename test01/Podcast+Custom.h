@@ -13,8 +13,9 @@
 @interface Podcast (Custom)
 
 + (Podcast*)podcastWithXML:(GDataXMLDocument *)doc
+      managedObjectContext:(NSManagedObjectContext*)moc
                        url:(NSURL*)url
-                     error:(NSError*)error;
+                     error:(NSError**)error;
 + (void)downloadPodcastWithURL:(NSURL*)url
                   errorHandler:(void (^) (NSString *title, NSString *message))errorHandler
                 successHandler:(void (^) (Podcast *podcast))successHandler;

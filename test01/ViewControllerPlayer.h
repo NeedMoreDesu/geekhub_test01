@@ -13,7 +13,6 @@
 
 @interface ViewControllerPlayer : UIViewController
 
-@property PodcastItem *podcastItem;
 @property Podcast *podcast;
 
 @end

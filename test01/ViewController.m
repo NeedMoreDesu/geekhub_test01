@@ -10,6 +10,7 @@
 #import "ViewController.h"
 #import "UIImageView+WebCache.h"
 #import "ViewControllerPlayer.h"
+#import "CoreData.h"
 
 @interface ViewController ()
 
@@ -62,10 +63,9 @@
     if(![self networkIsReachable])
         [_reach unreachableBlock](_reach);
     
-    //    self.podcast = [Podcast podcastFromDB];
-    NSArray *firstOne = [[NSManagedObjectContext fromAppDelegate]
+    NSArray *firstOne = [[CoreData sharedInstance].mainMOC
                          fetchObjectsForEntityName:@"Podcast"
-                         sortDescriptors:nil
+                         sortDescriptors:@[@[@"date", @NO]]
                          limit:1
                          predicate:nil];
     
@@ -79,7 +79,6 @@
         {
             ViewControllerPlayer *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"player"];
             controller.podcast = self.podcast;
-            controller.podcastItem = self.podcast.currentItem;
 
             [self.navigationController
              pushViewController:controller
@@ -144,10 +143,6 @@
                             _podcast = podcast;
                             [_navigationItem setTitle:podcast.title];
                             [_tableView reloadData];
-                            NSError *error = nil;
-                            [[NSManagedObjectContext fromAppDelegate] save:&error];
-                            if (error)
-                                NSLog(@"Error during save");
                         });
      }];
     
@@ -204,16 +199,13 @@
 ///segues
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-//    if([[segue identifier] isEqualToString:@"PodcastItemShow"])
-//    {
-//        NSIndexPath *selectedRowIndex = [_tableView indexPathForSelectedRow];
-//        ViewControllerPlayer *viewControllerPlayer = [segue destinationViewController];
-//        self.podcast.currentItemIndex = [NSNumber numberWithInt:[selectedRowIndex row]];
-//        [viewControllerPlayer
-//         setPodcastItem:self.podcast.currentItem];
-//        [viewControllerPlayer
-//         setPodcast:_podcast];
-//    }
+    if([[segue identifier] isEqualToString:@"PodcastItemShow"])
+    {
+        NSIndexPath *selectedRowIndex = [_tableView indexPathForSelectedRow];
+        ViewControllerPlayer *viewControllerPlayer = [segue destinationViewController];
+        self.podcast.currentItem = [self.podcast.items objectAtIndex:[selectedRowIndex row]];
+        viewControllerPlayer.podcast = self.podcast;
+    }
 }
 
 @end

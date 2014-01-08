@@ -12,9 +12,11 @@
 
 @interface PodcastItem (Custom)
 
-+ (NSArray*)podcastItemsWithXML:(GDataXMLDocument *)doc error:(NSError*)error;
++ (NSArray*)podcastItemsWithXML:(GDataXMLDocument *)doc
+           managedObjectContext:(NSManagedObjectContext*)moc
+                          error:(NSError**)error;
 
-- (int) nextMedia;
+- (Media*) nextMedia;
 
 - (NSURL*)imageURL;
 - (void)setImageURL:(NSURL*)url;

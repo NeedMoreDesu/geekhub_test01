@@ -12,17 +12,9 @@
 
 @implementation NSManagedObject (Helpers)
 
-+ (NSManagedObjectContext*)setupContext:(NSManagedObjectContext *)context
-{
-    if (!context)
-        context = [NSManagedObjectContext fromAppDelegate];
-    return context;
-}
-
 + (NSEntityDescription*)setupEntity:(id)entityNameOrClass
                         withContext:(NSManagedObjectContext*)context;
 {
-//    NSLog(@"%@", NSStringFromClass([self class]));
     if(class_isMetaClass(object_getClass(entityNameOrClass)))
         // if class
         return [NSEntityDescription
@@ -42,12 +34,11 @@
 + (id)temporaryObjectWithContext:(NSManagedObjectContext *)context
                           entity:(id)entityNameOrClass
 {
-    context = [NSManagedObject setupContext:context];
-    NSEntityDescription *entity = [NSManagedObject
+    NSEntityDescription *entity = [self
                                    setupEntity:entityNameOrClass
                                    withContext:context];
     
-    return [[NSManagedObject alloc]
+    return [[[self class] alloc]
             initWithEntity:entity
             insertIntoManagedObjectContext:nil];
 }
@@ -55,25 +46,23 @@
 - (id)temporaryObjectWithContext:(NSManagedObjectContext *)context
                           entity:(id)entityNameOrClass
 {
-    context = [NSManagedObject setupContext:context];
-    NSEntityDescription *entity = [NSManagedObject
+    NSEntityDescription *entity = [[self class]
                                    setupEntity:entityNameOrClass
                                    withContext:context];
     
-    NSManagedObject *obj = [[NSManagedObject alloc]
+    NSManagedObject *obj = [[[self class] alloc]
                             initWithEntity:entity
                             insertIntoManagedObjectContext:nil];
     
     [obj setValuesForKeysWithDictionary:
      [self dictionaryWithValuesForKeys:
       [entity attributesByName].allKeys]];
-
+    
     return obj;
 }
 
 - (id)insertToContext:(NSManagedObjectContext*)context
 {
-    context = [NSManagedObject setupContext:context];
     [context insertObject:self];
     return self;
 }
@@ -82,8 +71,8 @@
                     entity:(id)entityNameOrClass
 {
     return [[self
-            temporaryObjectWithContext:context
-            entity:entityNameOrClass]
+             temporaryObjectWithContext:context
+             entity:entityNameOrClass]
             insertToContext:context];
 }
 

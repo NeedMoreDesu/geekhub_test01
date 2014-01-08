@@ -12,9 +12,11 @@
 - (NSManagedObjectContext *)managedObjectContext;
 @end
 
-@interface NSManagedObjectContext (Helpers)
+@protocol CoreDataDelegateHolder <NSObject>
+-(id<NSManagedObjectContextHolder>)coreDataDelegate;
+@end
 
-+ (NSManagedObjectContext*)fromAppDelegate;
+@interface NSManagedObjectContext (Helpers)
 
 //descriptor and predicate can be nil, limit can be 0 (no limit)
 - (NSArray *)fetchObjectsForEntityName:(NSString *)entityName

@@ -18,7 +18,7 @@
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="imageUrlString" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="media" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Media" inverseName="podcastItem" inverseEntity="Media" syncable="YES"/>
+        <relationship name="media" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Media" inverseName="podcastItem" inverseEntity="Media" syncable="YES"/>
         <relationship name="podcast" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Podcast" inverseName="items" inverseEntity="Podcast" syncable="YES"/>
         <relationship name="podcastWithMeAsCurrent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Podcast" inverseName="currentItem" inverseEntity="Podcast" syncable="YES"/>
     </entity>

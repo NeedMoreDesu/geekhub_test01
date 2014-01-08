@@ -21,10 +21,12 @@
     self.imageUrlString = [url absoluteString];
 }
 
-+ (NSArray*)podcastItemsWithXML:(GDataXMLDocument *)doc error:(NSError*)error
++ (NSArray*)podcastItemsWithXML:(GDataXMLDocument *)doc
+           managedObjectContext:(NSManagedObjectContext*)moc
+                          error:(NSError**)error
 {
-    NSArray *items = [doc nodesForXPath:@"//channel/item" error: &error];
-    if (error)
+    NSArray *items = [doc nodesForXPath:@"//channel/item" error: error];
+    if (error && *error)
         return nil;
     NSArray *podcastItems =
     [items
@@ -56,8 +58,8 @@
          NSArray *media = [[item elementsForName:@"enclosure"]
                            map:^id(GDataXMLElement* item) {
                                Media *media = [Media
-                                               newObjectWithContext:nil
-                                               entity:[Media class]];
+                                               newObjectWithContext:moc
+                                               entity:nil];
                                media.urlString =
                                [[item attributeForName:@"url"]
                                 stringValue];
@@ -66,14 +68,14 @@
                            }];
          
          PodcastItem *podcastItem = [PodcastItem
-                                     newObjectWithContext:nil
-                                     entity:[PodcastItem class]];
+                                     newObjectWithContext:moc
+                                     entity:nil];
          
          [podcastItem setTitle:title];
          [podcastItem setImageURL:imageURL];
          [podcastItem setAuthor:author];
          [podcastItem setDate:date];
-         [podcastItem setMedia:[NSSet setWithArray: media]];
+         [podcastItem setMedia:[NSOrderedSet orderedSetWithArray:media]];
          [podcastItem setCurrentMediaIndex:@0];
          
          return podcastItem;
@@ -81,19 +83,21 @@
     return podcastItems;
 }
 
-- (int) nextMedia
+- (Media*) nextMedia
 {
-    int media = [self.currentMediaIndex intValue];
-    media++;
-    if (media >= self.media.count)
-        media = 0;
-    self.currentMediaIndex = [NSNumber numberWithInt:media];
+    int media_idx = [self.currentMediaIndex intValue];
+    media_idx++;
+    if (media_idx >= self.media.count)
+        media_idx = 0;
+    self.currentMediaIndex = [NSNumber numberWithInt:media_idx];
+    Media *media = [[self.media array]
+                    objectAtIndex:media_idx];
     return media;
 }
 
 - (Media*) currentMedia
 {
-    return [[self.media allObjects]
+    return [[self.media array]
             objectAtIndex:self.currentMediaIndex.integerValue];
 }
 

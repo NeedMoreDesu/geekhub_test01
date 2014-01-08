@@ -2,8 +2,8 @@
 //  PodcastItem.m
 //  test01
 //
-//  Created by dev on 12/24/13.
-//  Copyright (c) 2013 dev. All rights reserved.
+//  Created by dev on 1/8/14.
+//  Copyright (c) 2014 dev. All rights reserved.
 //
 
 #import "PodcastItem.h"
@@ -14,10 +14,10 @@
 @implementation PodcastItem
 
 @dynamic author;
+@dynamic currentMediaIndex;
 @dynamic date;
 @dynamic imageUrlString;
 @dynamic title;
-@dynamic currentMedia;
 @dynamic media;
 @dynamic podcast;
 @dynamic podcastWithMeAsCurrent;

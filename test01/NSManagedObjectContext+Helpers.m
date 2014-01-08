@@ -11,13 +11,6 @@
 
 @implementation NSManagedObjectContext (Helpers)
 
-+ (NSManagedObjectContext *)fromAppDelegate
-{
-    id<NSManagedObjectContextHolder> holder =
-    (id<NSManagedObjectContextHolder>)[[UIApplication sharedApplication] delegate];
-    return [holder managedObjectContext];
-}
-
 - (NSArray *)fetchObjectsForEntityName:(NSString *)entityName
                        sortDescriptors:(NSArray *)descriptors
                                  limit:(NSUInteger)limit

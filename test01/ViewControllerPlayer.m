@@ -75,16 +75,16 @@
 {
     [super viewDidLoad];
     UIImage *minImage =
-    [[UIImage imageNamed:@"album_seeker_progress"]
+    [[UIImage imageNamed:@"album-seeker-progress"]
      resizableImageWithCapInsets:UIEdgeInsetsMake(0, 4, 0, 0)
      resizingMode:UIImageResizingModeStretch
      ];
     UIImage *maxImage =
-    [[UIImage imageNamed:@"album_seeker_base"]
+    [[UIImage imageNamed:@"album-seeker-base"]
      resizableImageWithCapInsets:UIEdgeInsetsMake(0, 3, 0, 3)
      resizingMode:UIImageResizingModeStretch
      ];
-    UIImage *thumbImage = [UIImage imageNamed:@"album_seeker_pointer"];
+    UIImage *thumbImage = [UIImage imageNamed:@"album-seeker-pointer"];
     [_slider
      setMinimumTrackImage:minImage
      forState:UIControlStateNormal];
@@ -95,27 +95,26 @@
      setThumbImage:thumbImage
      forState:UIControlStateNormal];
     
-//    [_picture
-//     setImageWithURL: [[self podcastItem] imageURL]];
+    [_picture
+     setImageWithURL: self.podcast.currentItem.imageURL];
     [[_picture layer] setCornerRadius:5.0];
     [[_picture layer] setMasksToBounds:YES];
     
     [_podcastItemTitle
-     setText: [[self podcastItem] title]];
+     setText: self.podcast.currentItem.title];
     [_podcastTitle
-     setText: [[self podcast] title]];
-//    [_author
-//     setText: [[self podcastItem] author]];
+     setText: self.podcast.title];
+    [_author
+     setText: self.podcast.currentItem.author];
     
-//    NSURL *currentMediaURL = [[[self podcastItem] media]
-//                              objectAtIndex:self.podcastItem.currentMedia];
+    NSURL *currentMediaURL = self.podcast.currentItem.currentMedia.url;
 
-//    AVURLAsset *asset = [[AVURLAsset alloc]
-//                         initWithURL:currentMediaURL
-//                         options:nil];
-//    AVPlayerItem *item = [[AVPlayerItem alloc] initWithAsset:asset];
-//    _player = [[AVPlayer alloc] initWithPlayerItem:item];
-//    [self setCurrentPlaybackTime:self.podcastItem.secondsForCurrentMedia];
+    AVURLAsset *asset = [[AVURLAsset alloc]
+                         initWithURL:currentMediaURL
+                         options:nil];
+    AVPlayerItem *item = [[AVPlayerItem alloc] initWithAsset:asset];
+    _player = [[AVPlayer alloc] initWithPlayerItem:item];
+    [self setCurrentPlaybackTime:self.podcast.currentItem.currentMedia.seconds.doubleValue];
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -140,7 +139,7 @@
              (double) blockPlayer.currentTime.value /
              (double) endTime.value;
              
-             blockSelf.podcastItem.currentMedia.seconds =
+             blockSelf.podcast.currentItem.currentMedia.seconds =
              [NSNumber numberWithFloat: CMTimeGetSeconds(blockPlayer.currentTime)];
              
              blockSlider.value = normalizedTime;
@@ -150,27 +149,6 @@
                                [blockSelf stringifyTime:endTime]];
          }
      }];
-    
-    [[NSNotificationCenter defaultCenter]
-     addObserver:self
-     selector:@selector(viewWillEnterBackground)
-     name:UIApplicationWillResignActiveNotification
-     object:nil];
-
-    [[NSNotificationCenter defaultCenter]
-     addObserver:self
-     selector:@selector(viewWillLeaveBackground)
-     name:UIApplicationWillEnterForegroundNotification
-     object:nil];
-
-    [[NSNotificationCenter defaultCenter]
-     addObserver:self
-     selector:@selector(viewWillBeTerminated)
-     name:UIApplicationWillTerminateNotification
-     object:nil];
-
-	// Do any additional setup after loading the view.
-//    [self.podcast saveToDB];
 }
 
 - (IBAction)rewind15Sec:(UIButton *)sender {
@@ -188,14 +166,13 @@
 
 - (IBAction)nextTrack:(id)sender {
     
-//    NSURL *currentMediaURL = [[[self podcastItem] media]
-//                              objectAtIndex:[self.podcastItem nextMedia]];
+    NSURL *currentMediaURL = self.podcast.currentItem.nextMedia.url;
     
-//    AVURLAsset *asset = [[AVURLAsset alloc]
-//                         initWithURL:currentMediaURL
-//                         options:nil];
-//    AVPlayerItem *item = [[AVPlayerItem alloc] initWithAsset:asset];
-//    [_player replaceCurrentItemWithPlayerItem:item];
+    AVURLAsset *asset = [[AVURLAsset alloc]
+                         initWithURL:currentMediaURL
+                         options:nil];
+    AVPlayerItem *item = [[AVPlayerItem alloc] initWithAsset:asset];
+    [_player replaceCurrentItemWithPlayerItem:item];
 }
 
 - (IBAction)sliderChanging:(UISlider *)sender {
@@ -235,28 +212,7 @@
     _timeObserver = nil; // jeez. That was hard.
     [[NSNotificationCenter defaultCenter]
      removeObserver:self];
-//    self.podcast.currentItemIndex = nil;
-//    long long podcastId = [self.podcast saveToDB];
-//    [self.podcastItem
-//     saveToDBWithPodcastID:podcastId];
-}
-
-- (void)viewWillEnterBackground
-{
-//    long long podcastId = [self.podcast saveToDB];
-//    [self.podcastItem
-//     saveToDBWithPodcastID:podcastId];
-}
-
-- (void)viewWillLeaveBackground
-{
-}
-
-- (void)viewWillBeTerminated
-{
-//    long long podcastId = [self.podcast saveToDB];
-//    [self.podcastItem
-//     saveToDBWithPodcastID:podcastId];
+    self.podcast.currentItem = nil;
 }
 
 @end
