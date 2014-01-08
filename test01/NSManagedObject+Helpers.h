@@ -11,7 +11,6 @@
 
 @interface NSManagedObject (Helpers)
 
-// if context is nil, will call managedObjectContext in AppDelegate
 // if entityNameOrClass is nil, will try to use current class name as entity name
 
 + (id)temporaryObjectWithContext:(NSManagedObjectContext *)context

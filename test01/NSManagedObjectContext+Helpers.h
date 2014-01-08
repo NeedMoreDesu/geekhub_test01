@@ -8,14 +8,6 @@
 
 #import <CoreData/CoreData.h>
 
-@protocol NSManagedObjectContextHolder <NSObject>
-- (NSManagedObjectContext *)managedObjectContext;
-@end
-
-@protocol CoreDataDelegateHolder <NSObject>
--(id<NSManagedObjectContextHolder>)coreDataDelegate;
-@end
-
 @interface NSManagedObjectContext (Helpers)
 
 //descriptor and predicate can be nil, limit can be 0 (no limit)
