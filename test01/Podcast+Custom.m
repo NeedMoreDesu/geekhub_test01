@@ -42,7 +42,8 @@
     if (podcast)
     {
         items = [items filter:^BOOL(NSUInteger idx, PodcastItem *item) {
-            return item.date > podcast.date;
+            NSLog(@"i:%@, p:%@", item.date, podcast.date);
+            return [item.date compare:podcast.date]==NSOrderedDescending;
         }];
         [items enumerateObjectsUsingBlock:^(PodcastItem *obj, NSUInteger idx, BOOL *stop) {
             [obj insertToContext:moc];
