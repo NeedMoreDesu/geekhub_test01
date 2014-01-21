@@ -58,7 +58,7 @@
          NSArray *media = [[item elementsForName:@"enclosure"]
                            map:^id(GDataXMLElement* item) {
                                Media *media = [Media
-                                               newObjectWithContext:moc
+                                               temporaryObjectWithContext:moc
                                                entity:nil];
                                media.urlString =
                                [[item attributeForName:@"url"]
@@ -68,7 +68,7 @@
                            }];
          
          PodcastItem *podcastItem = [PodcastItem
-                                     newObjectWithContext:moc
+                                     temporaryObjectWithContext:moc
                                      entity:nil];
          
          [podcastItem setTitle:title];
@@ -81,6 +81,15 @@
          return podcastItem;
      }];
     return podcastItems;
+}
+
+- (id)insertToContext:(NSManagedObjectContext*)context
+{
+    [self.media enumerateObjectsUsingBlock:^(Media *obj, NSUInteger idx, BOOL *stop) {
+        [obj insertToContext:context];
+    }];
+    [super insertToContext:context];
+    return self;
 }
 
 - (Media*) nextMedia

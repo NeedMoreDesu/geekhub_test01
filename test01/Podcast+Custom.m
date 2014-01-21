@@ -9,6 +9,7 @@
 #import "Podcast+Custom.h"
 #import "PodcastItem+Custom.h"
 #import "CoreData.h"
+#import "NSManagedObjectContext+Helpers.h"
 
 @implementation Podcast (Custom)
 
@@ -33,13 +34,34 @@
     
     if (error && *error)
         return nil;
-    Podcast *podcast = [Podcast
-                        newObjectWithContext:moc
-                        entity:nil];
+    Podcast *podcast = [[moc
+                         fetchObjectsForEntityName:NSStringFromClass([self class])
+                         sortDescriptors:nil
+                         limit:1
+                         predicate:@"title = %@", title] firstObject];
+    if (podcast)
+    {
+        items = [items filter:^BOOL(NSUInteger idx, PodcastItem *item) {
+            return item.date > podcast.date;
+        }];
+        [items enumerateObjectsUsingBlock:^(PodcastItem *obj, NSUInteger idx, BOOL *stop) {
+            [obj insertToContext:moc];
+        }];
+        items = [items arrayByAddingObjectsFromArray:podcast.items.array];
+    }
+    else
+    {
+        podcast = [Podcast
+                   newObjectWithContext:moc
+                   entity:nil];
+        [items enumerateObjectsUsingBlock:^(PodcastItem *obj, NSUInteger idx, BOOL *stop) {
+            [obj insertToContext:moc];
+        }];
+    }
     [podcast setTitle:title];
-    [podcast setItems:[NSOrderedSet orderedSetWithArray: items]];
     [podcast setUrlString:urlString];
     [podcast setDate:[NSDate date]];
+    [podcast setItems:[NSOrderedSet orderedSetWithArray: items]];
     
     return podcast;
 }
@@ -102,7 +124,6 @@
                  successHandler(podcast);
              }];
          }];
-         
      }];
 }
 

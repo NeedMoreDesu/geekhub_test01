@@ -185,6 +185,8 @@
      {
          dispatch_async(dispatch_get_main_queue(),
                         ^{
+                            if (self.podcast.items.count <= indexPath.row)
+                                return;
                             [tableView beginUpdates];
                             [tableView
                              reloadRowsAtIndexPaths:@[indexPath]
