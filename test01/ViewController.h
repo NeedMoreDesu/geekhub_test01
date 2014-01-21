@@ -13,9 +13,11 @@
 #import "NSManagedObjectContext+Helpers.h"
 
 @interface ViewController : UIViewController
-<UITableViewDataSource, UITableViewDelegate,
+<UITableViewDataSource,
+UITableViewDelegate,
 UITextFieldDelegate>
 
 @property (nonatomic, strong) Podcast *podcast;
+@property (weak, nonatomic) IBOutlet UITextField *textField;
 
 @end

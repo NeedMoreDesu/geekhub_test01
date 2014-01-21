@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 dev. All rights reserved.
 //
 
-#import "Reachability.h"
+#import "Reach.h"
 #import "ViewController.h"
 #import "UIImageView+WebCache.h"
 #import "ViewControllerPlayer.h"
@@ -21,57 +21,23 @@
     __weak IBOutlet UITextField *_textField;
     __weak IBOutlet UITableView *_tableView;
     __weak IBOutlet UINavigationItem *_navigationItem;
-    Reachability* _reach;
-}
-
-- (BOOL)networkIsReachable
-{
-    NetworkStatus remoteHostStatus = [_reach currentReachabilityStatus];
-    return remoteHostStatus != NotReachable;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _reach = [Reachability reachabilityForInternetConnection];
-    [_reach startNotifier];
-    _reach.unreachableBlock = ^(Reachability*reach)
-    {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [[[UIAlertView alloc]
-              initWithTitle:@"No connection"
-              message:@""
-              delegate:nil
-              cancelButtonTitle:@"Ok"
-              otherButtonTitles:nil]
-             show];
-        });
-    };
-    _reach.reachableBlock = ^(Reachability*reach)
-    {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [[[UIAlertView alloc]
-              initWithTitle:@"Internet connection established"
-              message:@""
-              delegate:nil
-              cancelButtonTitle:@"Ok"
-              otherButtonTitles:nil]
-             show];
-        });
-    };
     
-    if(![self networkIsReachable])
-        [_reach unreachableBlock](_reach);
+//    NSArray *firstOne = [[CoreData sharedInstance].mainMOC
+//                         fetchObjectsForEntityName:@"Podcast"
+//                         sortDescriptors:@[@[@"date", @NO]]
+//                         limit:1
+//                         predicate:nil];
     
-    NSArray *firstOne = [[CoreData sharedInstance].mainMOC
-                         fetchObjectsForEntityName:@"Podcast"
-                         sortDescriptors:@[@[@"date", @NO]]
-                         limit:1
-                         predicate:nil];
-    
-    if(firstOne.count > 0)
+//    if(firstOne.count > 0)
+//    {
+//        self.podcast = [firstOne objectAtIndex:0];
+    if (self.podcast)
     {
-        self.podcast = [firstOne objectAtIndex:0];
         [_textField setText:self.podcast.urlString];
         [_navigationItem setTitle:self.podcast.title];
         [_tableView reloadData];
@@ -124,9 +90,9 @@
 /// text field
 - (BOOL)textFieldShouldReturn:(UITextField *)textField              // called when 'return' key pressed. return NO to ignore.
 {
-    if(![self networkIsReachable])
+    if(![[Reach sharedInstance] networkIsReachable])
     {
-        [_reach unreachableBlock](_reach);
+        [[Reach sharedInstance].reach unreachableBlock]([Reach sharedInstance].reach);
         return NO;
     }
     self.podcast.urlString = [textField text];
@@ -166,13 +132,7 @@
 {
     static NSString *CellIdentifier = @"PodcastItemCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if(cell == nil)
-    {
-        cell = [[UITableViewCell alloc]
-                initWithStyle:UITableViewCellStyleDefault
-                reuseIdentifier:CellIdentifier];
-    }
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     NSInteger row = [indexPath row];
     PodcastItem *podcastItem = [self.podcast.items objectAtIndex:row];

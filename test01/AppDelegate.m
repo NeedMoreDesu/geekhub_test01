@@ -9,67 +9,15 @@
 #import "AppDelegate.h"
 #import "ViewControllerPlayer.h"
 #import "ViewController.h"
+#import "Reach.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    
-//    [self.coreDataDelegate.backgroundMOC performBlockAndWait:^{
-//        Podcast *newItem = [Podcast
-//                            newObjectWithContext:self.coreDataDelegate.backgroundMOC
-//                            entity:nil];
-//        newItem.title = @"abc";
-//        NSLog(@"bg0: %@",[[self.coreDataDelegate.backgroundMOC
-//                           fetchObjectsForEntityName:@"Podcast"
-//                           sortDescriptors:nil
-//                           limit:0
-//                           predicate:nil]
-//                          map:^id(Podcast *item) {
-//                              return item.title;
-//                          }]);
-//    }];
-//    NSLog(@"fg: %@",[[self.coreDataDelegate.mainMOC
-//                      fetchObjectsForEntityName:@"Podcast"
-//                      sortDescriptors:nil
-//                      limit:0
-//                      predicate:nil]
-//                     map:^id(Podcast *item) {
-//                         return item.title;
-//                     }]);
-//    
-//    [self.coreDataDelegate.backgroundMOC performBlock:^{
-//        NSArray *objs = [[self.coreDataDelegate.backgroundMOC
-//          fetchObjectsForEntityName:@"Podcast"
-//          sortDescriptors:nil
-//          limit:0
-//          predicate:nil]
-//         map:^id(Podcast *item) {
-//             return item.objectID;
-//         }];
-//        [self.coreDataDelegate.mainMOC performBlock:^{
-//            NSLog(@"bg1: %@", [objs
-//                               map:^id(NSManagedObjectID *item)
-//                               {
-//                                   Podcast *pod = (Podcast*)[self.coreDataDelegate.mainMOC objectWithID:item];
-//                                   return pod.title;
-//                               }]);
-//        }];
-//    }];
-//
-//    [self.coreDataDelegate.mainMOC save:nil];
-//    [self.coreDataDelegate.backgroundMOC performBlock:^{
-//        NSLog(@"bg2: %@",[[self.coreDataDelegate.backgroundMOC
-//                          fetchObjectsForEntityName:@"Podcast"
-//                          sortDescriptors:nil
-//                          limit:0
-//                          predicate:nil]
-//                         map:^id(Podcast *item) {
-//                             return item.title;
-//                         }]);
-//        [self.coreDataDelegate.backgroundMOC save:nil];
-//    }];
+
+    [Reach sharedInstance];
 
     return YES;
 }
