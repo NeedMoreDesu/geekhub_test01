@@ -38,6 +38,14 @@
 	// Do any additional setup after loading the view.
 }
 
+//- (void)viewDidAppear:(BOOL)animated
+//{
+//    [self.podcasts sortedArrayUsingComparator:^NSComparisonResult(Podcast *obj1, Podcast *obj2) {
+//        return obj1.date < obj2.date ? NSOrderedAscending : NSOrderedDescending;
+//    }];
+//    [self.tableView reloadData];
+//}
+//
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -76,11 +84,7 @@
      } successHandler:^(Podcast *podcast) {
          dispatch_async(dispatch_get_main_queue(),
                         ^{
-                            ViewController *vc = [[ViewController alloc] init];
-                            vc.podcast = podcast;
-                            [self.navigationController
-                             pushViewController:vc
-                             animated:YES];
+                            [self performSegueWithIdentifier:@"searchSegue" sender:podcast];
                         });
      }];
     
@@ -126,6 +130,10 @@
         ViewController *viewController = [segue destinationViewController];
         Podcast *currentPodcast = [self.podcasts objectAtIndex:[selectedRowIndex row]];
         viewController.podcast = currentPodcast;
+    } else if([[segue identifier] isEqualToString:@"searchSegue"])
+    {
+        ViewController *vc = [segue destinationViewController];
+        vc.podcast = sender;
     }
 }
 

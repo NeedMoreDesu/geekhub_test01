@@ -87,6 +87,7 @@
                     <navigationItem key="navigationItem" id="N6J-PS-NYO"/>
                     <connections>
                         <outlet property="tableView" destination="MAp-Lk-jQA" id="dsT-wL-hRS"/>
+                        <segue destination="vXZ-lx-hvc" kind="push" identifier="searchSegue" id="mli-Na-lte"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NxE-Zt-oRJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -288,4 +289,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="mli-Na-lte"/>
+    </inferredMetricsTieBreakers>
 </document>
